@@ -1,0 +1,24 @@
+<view class='cu-custom' style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='top:{{StatusBar}}px;'>上传图片</view>
+  </view>
+</view>
+<view class="margin-xl padding-xl bg-white radius shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+    <block wx:else>
+      <view class='text-center'>
+        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+        <view class="padding">{{userInfo.nickName}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class="text-center margin-top">
+
+  <button wx:if="{{src==''}}" class='cu-btn round bg-yellow shadow' bindtap='choose'><text>选择图片</text></button>
+  <block wx:else>
+  <button class='cu-btn round bg-yellow shadow'><text>选择图片</text></button>
+  </block>
+</view>

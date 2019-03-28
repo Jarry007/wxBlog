@@ -1,0 +1,30 @@
+<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{4}}" wx:key class="{{cardCur==index?'cur':''}}">
+    <view class='bg-img shadow-blur' style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" bindtap='more' data-id='{{index}}'></view>
+  </swiper-item>
+</swiper>
+<view class="cu-card case {{isCard?'no-card':''}}">
+  <view wx:for="{{posts}}" wx:key='{{item}}' class="cu-item shadow" bindtap='more' data-id='{{index}}'>
+    <view class='image'>
+      <image src="https://image.weilanwl.com/img/4x3-1.jpg" mode="widthFix"></image>
+      <view class="cu-tag bg-blue">原创</view>
+      <view class='cu-bar bg-shadeBottom'>{{item.tittle}}</view>
+    </view>
+    <view class="cu-list menu menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{item.link_.avatar}});"></view>
+        <view class='content flex-sub'>
+          <view class='text-grey'>{{item.link_.username}}</view>
+          <view class='text-gray text-sm flex justify-between'>
+            {{item.time }}
+            <view class="text-gray text-sm">
+              <text class="icon-attentionfill"></text> {{item.view_count}}
+              <text class="icon-appreciatefill"></text> {{item.like_count}}
+              <text class="icon-messagefill"></text> {{item.comment}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

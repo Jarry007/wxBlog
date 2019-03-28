@@ -1,0 +1,76 @@
+<import src='../../towxml/entry.wxml'/>
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+    </view>
+</view>
+<view class="cu-card dynamic {{isCard?'no-card':''}}">
+    <view class="cu-item shadow">
+        <view class="cu-list menu menu-avatar">
+            <view class="cu-item">
+                <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
+                <view class='content flex-sub'>
+                    <view>{{post.link_.username}}</view>
+                    <view class='text-gray text-sm flex justify-between'>
+                        {{post.timestamp}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='text-content'>
+        <view><template is="entry" data="{{...article}}" /></view> 
+        </view>
+        <view class="grid {{isCard?'col-3 grid-square':'col-1'}} flex-sub padding-lr">
+            <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);" wx:for="{{isCard?9:1}}" wx:key>
+            </view>
+        </view>
+        <view class='text-gray text-sm text-right padding'>
+            <text class="icon-attentionfill"></text> {{post.view_count}}
+            <text class="icon-appreciatefill"></text> {{post.like_count}}
+            <text class="icon-messagefill"></text> {{post.comment}}
+        </view>
+        <view class="cu-list menu menu-avatar comment solids-top">
+            <view class="cu-item" wx:for="{{post.new_comment.comments}}" wx:key='{{item}}'>
+                <view class="cu-avatar round" style="background-image:url({{item._link.avatar}});"></view>
+                <view class='content'>
+                    <view class="cu-capsule ">
+                        <view class='cu-tag line-black'>
+                            <text>{{item._link.username}}</text>
+                        </view>
+                    </view>
+                    <view class='text-gray text-content text-df'>
+                        {{item.body}}
+
+                    </view>
+                    <view class='bg-grey padding-sm radius margin-top-sm  text-sm' wx:for="{{item.replies.r}}" wx:key wx:for-item='reply'>
+                        <view class="flex {{index!=0?'margin-top-sm':'' }}">
+                        <view class='cu-tag line-white'>
+                            <view>{{reply._link.username}}</view>
+                            </view>
+                            <view class='flex-sub'>{{reply.body}}</view>
+                        </view>
+                    </view>
+                    <view class='margin-top-sm flex justify-between'>
+                        <view class='text-gray text-df'>{{item.time}}</view>
+                        <view>
+                            <text class="icon-appreciate{{!isZan?'':'fill'}} text-{{!isZan?'gray':'red'}}" checked='{{zan}}' catchtap='zan'></text>
+                            <text class="icon-messagefill text-gray margin-left-sm"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view><template is="entry" data="{{...article}}" /></view> 
+<form bindsubmit='comment'>
+    <view class="cu-bar foot input">
+        <input class='solid-bottom' focus="{{false}}" maxlength="300" cursor-spacing="10" name='say'></input>
+        <view class='action'>
+            <text class='icon-emojifill text-grey'></text>
+        </view>
+        <button class='cu-btn bg-green shadow' form-type='submit'>发送</button>
+    </view>
+</form>
