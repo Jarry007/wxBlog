@@ -1,3 +1,4 @@
+var WxParse = require('../../wxParse/wxParse.js');
 const app = getApp()
 Page({
 
@@ -30,11 +31,12 @@ Page({
             post:posts[options.id]
         })
         let parse = this.data.post.body_html;
-        console.log(parse)
+       
+        WxParse.wxParse('wxshow', 'html', parse, this, 20);
         let article = app.towxml.toJson(
             parse,'html'
         )
-        console.log(article)
+      
         article.theme = 'light'
         this.setData({
             article:article

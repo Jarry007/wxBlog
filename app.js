@@ -12,7 +12,7 @@ App({
         url: 'http://127.0.0.1:5000/mp/posts',
         success:res=>{
             console.log('success-request!')
-            console.log(res.data.posts)
+            console.log(res.data)
             let post_ = res.data.posts;
             for(var i=0;i<post_.length;i++){
                 post_[i]['time'] = time.formatTime(new Date(post_[i]['time']))
