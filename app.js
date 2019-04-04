@@ -11,20 +11,22 @@ App({
         method:'post' ,
         url: 'http://127.0.0.1:5000/mp/posts',
         success:res=>{
-            console.log('success-request!')
+            //console.log('success-request!')
             console.log(res.data)
             let post_ = res.data.posts;
+          console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
             for(var i=0;i<post_.length;i++){
-                post_[i]['time'] = time.formatTime(new Date(post_[i]['time']))
+              post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
              let comment_ = post_[i].new_comment.comments;
                 for (var j = 0; j < comment_.length; j++) {
-                    comment_[j]['time'] = time.formatTime(new Date(comment_[j]['time']))
+                  comment_[j]['time'] = time.formatTime(new Date(comment_[j]['time'].replace('GMT', '')))
                     let reply_ = comment_[j].replies.r;
                     for (let k=0;k<reply_.length;k++){
-                        reply_[k]['time'] = time.formatTime(new Date(reply_[k]['time']))
+                      reply_[k]['time'] = time.formatTime(new Date(reply_[k]['time'].replace('GMT', '')))
                     }
                 }
              }
+          console.log('hou:' + post_[0]['time'])
             
             this.globalData.posts = res.data.posts
             if (this.postsReadyCallback){

@@ -7,7 +7,7 @@ https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javasc
  */
 
 code[class*="language-"],
-pre[class*="language-"] {
+.wxParse-pre {
 	color: black;
 	background: none;
 	text-shadow: 0 1px white;
@@ -30,16 +30,16 @@ pre[class*="language-"] {
 	hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+.wxParse-pre::-moz-selection, .wxParse-pre::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #080d13;
 }
 
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+.wxParse-pre::selection, .wxParse-pre ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	text-shadow: none;
-	background: #b3d4fc;
+	background: #040608;
 }
 
 @media print {
@@ -50,17 +50,17 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 }
 
 /* Code blocks */
-pre[class*="language-"] {
+.wxParse-pre {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
 }
 
 :not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-	background: #f5f2f0;
+.wxParse-pre {
+	background: #f7f7f7;
+  border: 1rpx solid rgb(209, 208, 208);
 }
-
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .1em;

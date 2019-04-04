@@ -1,6 +1,5 @@
 
 page {
-  background: #f1f1f1;
   font-size: 28rpx;
   color: #333;
   font-family: Helvetica Neue, Helvetica, sans-serif;
@@ -2056,6 +2055,7 @@ button.icon.lg {
 
 .cu-card.case .image {
   position: relative;
+  background-image: 'https://image.weilanwl.com/img/4x3-1.jpg';
 }
 
 .cu-card.case .image image {
@@ -3567,7 +3567,11 @@ scroll-view.cu-steps .cu-item {
 }
 
 .text-content {
-  line-height: 1.6;
+  
+  margin: 0 40rpx;
+  padding-top: 40rpx;
+  color: #333;
+  background: #fff;
 }
 
 .text-left {

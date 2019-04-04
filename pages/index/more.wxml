@@ -10,7 +10,7 @@
     </view>
 </view>
 <view class="cu-card dynamic {{isCard?'no-card':''}}">
-    <view class="cu-item shadow">
+    <view class="">
         <view class="cu-list menu menu-avatar">
             <view class="cu-item">
                 <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
@@ -23,7 +23,7 @@
             </view>
         </view>
         <view class='text-content'>
-        <view><template is="entry" data="{{...article}}" /></view> 
+        <view><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
 
         <view class="grid {{isCard?'col-3 grid-square':'col-1'}} flex-sub padding-lr">
             <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);" wx:for="{{isCard?9:1}}" wx:key>
@@ -68,7 +68,7 @@
     </view>
 </view>
 <view><template is="entry" data="{{...article}}" /></view> 
-<view><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
+
 
         </view>
 <form bindsubmit='comment'>

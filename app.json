@@ -1,15 +1,15 @@
 {
-  "pages":[
-      "pages/index/list",
+  "pages": [
+    "pages/index/list",
     "pages/index/index",
     "pages/index/more"
-    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "ColorUI",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

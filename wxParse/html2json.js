@@ -11,7 +11,7 @@
  * for: 微信小程序富文本解析
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */
-
+var highlight = require('./highlight.js')
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
 var __emojisBaseSrc = '';
@@ -35,6 +35,8 @@ var fillAttrs = makeMap("checked,compact,declare,defer,disabled,ismap,multiple,n
 
 // Special Elements (can contain anything)
 var special = makeMap("wxxxcode-style,script,style,view,scroll-view,block");
+
+
 function makeMap(str) {
     var obj = {}, items = str.split(",");
     for (var i = 0; i < items.length; i++)
@@ -67,6 +69,7 @@ function html2json(html, bindName) {
     html = removeDOCTYPE(html);
     html = trimHtml(html);
     html = wxDiscode.strDiscode(html);
+    html = highlight.highlight(html);
     //生成node节点
     var bufArray = [];
     var results = {
@@ -109,14 +112,14 @@ function html2json(html, bindName) {
                     var name = attr.name;
                     var value = attr.value;
                     if (name == 'class') {
-                        console.dir(value);
+                        //console.dir(value);
                         //  value = value.join("")
                         node.classStr = value;
                     }
                     // has multi attibutes
                     // make it array of attribute
                     if (name == 'style') {
-                        console.dir(value);
+                       // console.dir(value);
                         //  value = value.join("")
                         node.styleStr = value;
                     }
