@@ -1,6 +1,5 @@
 var Prism = require('../highlight/prism.js')
 function highlight(data){
-  let nameArr = ['pre'];
   let langArr = new Array();
   langArr = listLanguages();
  // console.log('all-language:'+langArr)
@@ -20,28 +19,29 @@ function highlight(data){
   }
 
   let cls;
-
   let i = 0;
   while (i < tagArr.length - 1) { 
     getStartInfo(tagArr[i])
     var label = tagArr[i].match(/<*([^> ]*)/)[1];
-   // console.log('label'+label)
+   // console.log('label:'+label)
     if (tagArr[i + 1] === '</' + label + '>') { 
-    //  console.log('class:'+cls);
+      console.log('class:'+cls);
       if (label === 'code' ) { 
         let lang = cls.split(' ')[0]; 
         if (/lang-(.*)/i.test(lang)) { 
           lang = lang.replace(/lang-(.*)/i, '$1');
+          console.log('lang:'+lang)
         }
         else if (/languages?-(.*)/i.test(lang)) {
           lang = lang.replace(/languages?-(.*)/i, '$1'); 
+          console.log('languages:'+lang)
         }
         if (langArr.indexOf(lang) == -1 || lang == null || lang == 'none' || lang == 'null') {
         }
         else {
         
           let code = data.substring(indexArr[i], indexArr[i + 1]).replace(/<code[^>]*>/, '');
-         // console.log('code：'+code)
+         console.log('code：'+code)
 
           let hcode = Prism.highlight(code, Prism.languages[lang], lang);
           html = html.replace(code, hcode);
@@ -49,10 +49,10 @@ function highlight(data){
         }
 
       }
-    
       i++;
+    }else{
+      console.log('不是闭包')
     }
-  
     i++;
   }
   return html;
@@ -61,34 +61,17 @@ function highlight(data){
     cls = matchRule(str, 'class');
   }
 
-
   function matchRule(str, rule) {
     let value = '';
     let re = new RegExp(rule + '=[\'"]?([^\'"]*)');
+    //console.log('regexp:'+re)
     if (str.match(re) !== null) {
       value = str.match(re)[1];
+      //console.log('value:'+value)
     }
     return value;
   }
-  //检查是否为支持的标签
-  function checkName(str) {
-    let name = 'div';
-    for (let i = 0; i < nameArr.length; i++) {
-      if (str === nameArr[i]) {
-        name = str;
-        break;
-      }
-    }
-    return name;
-  }
-
-  //html字符转换 // 注意，顺序不能错
-  function escape2Html(str) {
-    str = str.replace(/&lt;/g, '<');
-    str = str.replace(/&gt;/g, '>');
-    str = str.replace(/&amp;/g, '&');
-    return str;
-  }
+ 
 
   // 列出当前 Prism.js 中已有的代码语言，可以自己在 Prism 的下载页面选择更多的语言。
   function listLanguages() {

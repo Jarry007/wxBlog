@@ -8,7 +8,7 @@ App({
         success:res=>{
             console.log(res.data)
             let post_ = res.data.posts;
-          console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
+         // console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
             for(var i=0;i<post_.length;i++){
               post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
              let comment_ = post_[i].new_comment.comments;
@@ -20,7 +20,12 @@ App({
                     }
                 }
              }
+<<<<<<< HEAD
           console.log('hou:' + post_[0]['time'])
+=======
+          //console.log('hou:' + post_[0]['time'])
+            
+>>>>>>> 48e3e41b24ab9d411d6a428528f0f3266a3ba44f
             this.globalData.posts = res.data.posts
             if (this.postsReadyCallback){
                 this.postsReadyCallback(res.posts)

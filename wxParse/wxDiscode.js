@@ -106,14 +106,20 @@ function strcharacterDiscode(str){
     str = str.replace(/&nbsp;/g, ' ');
     str = str.replace(/&quot;/g, "'");
     str = str.replace(/&amp;/g, '&');
+<<<<<<< HEAD
      str = str.replace(/&lt;/g, '‹');
      str = str.replace(/&gt;/g, '›');
 
+=======
+    str = str.replace(/&lt;/g, '‹');
+    str = str.replace(/&gt;/g, '›');
+>>>>>>> 48e3e41b24ab9d411d6a428528f0f3266a3ba44f
     //str = str.replace(/&lt;/g, '<');
     //str = str.replace(/&gt;/g, '>');
     str = str.replace(/&#8226;/g, '•');
     str = str.replace(/↵/g, '\n');
-
+   // console.log('character转义完成')
+   // console.log(str)
     return str;
 }
 
@@ -186,10 +192,10 @@ function strMoreDiscode(str){
 
 function strDiscode(str){
     str = strNumDiscode(str);
-    str = strGreeceDiscode(str);
-    str = strcharacterDiscode(str);
+    str = strGreeceDiscode(str);   
     str = strOtherDiscode(str);
     str = strMoreDiscode(str);
+    str = strcharacterDiscode(str);
     return str;
 }
 function urlToHttpUrl(url,rep){

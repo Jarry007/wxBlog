@@ -14,7 +14,7 @@
 var highlight = require('./highlight.js')
 var __placeImgeUrlHttps = "https";
 var __emojisReg = '';
-var __emojisBaseSrc = '';
+var __emojisBaseSrc = ''
 var __emojis = {};
 var wxDiscode = require('./wxDiscode.js');
 var HTMLParser = require('./htmlparser.js');
@@ -68,6 +68,7 @@ function html2json(html, bindName) {
     //处理字符串
     html = removeDOCTYPE(html);
     html = trimHtml(html);
+    
     html = wxDiscode.strDiscode(html);
     html = highlight.highlight(html);
     //生成node节点
@@ -261,7 +262,9 @@ function html2json(html, bindName) {
 function transEmojiStr(str){
   // var eReg = new RegExp("["+__reg+' '+"]");
 //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  
+  str = str.replace(/&lt;/g, '<');
+  str = str.replace(/&gt;/g, '>');
+  str = str.replace(/&amp;/g, '&');
   var emojiObjs = [];
   //如果正则表达式为空
   if(__emojisReg.length == 0 || !__emojis){
@@ -273,6 +276,7 @@ function transEmojiStr(str){
   }
   //这个地方需要调整
   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
+  
   var eReg = new RegExp("[:]");
   var array = str.split(eReg);
   for(var i = 0; i < array.length; i++){
