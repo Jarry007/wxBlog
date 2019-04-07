@@ -1,7 +1,5 @@
-<import src='../../towxml/entry.wxml'/>
-<import src="../../wxParse/wxParse.wxml"/>
 
-<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+<import src="../../wxParse/wxParse.wxml"/>
 <view class="cu-custom" style="height:{{CustomBar}}px;">
     <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
         <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
@@ -24,7 +22,6 @@
         </view>
         <view class='text-content'>
         <view><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
-
         <view class="grid {{isCard?'col-3 grid-square':'col-1'}} flex-sub padding-lr">
             <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);" wx:for="{{isCard?9:1}}" wx:key>
             </view>
@@ -67,10 +64,20 @@
         </view>
     </view>
 </view>
-<view><template is="entry" data="{{...article}}" /></view> 
-
 
         </view>
+    <view class='img-style' animation="{{animCollect}}" bindtap="collect">
+  <text  class="icon-edit lg text-gray" >评论</text>
+  </view>
+  <view class='img-style' animation="{{animTranspond}}" >
+  <text class=" icon-edit lg text-gray" bindtap="transpond">赞</text>
+  </view>
+  <view class='img-style' animation="{{animInput}}" bindtap="input">
+  <text  class="icon-edit lg text-gray" >转发</text>
+  </view>
+  <view class='img-plus-style bg-purple padding radius text-center shadow-blur' animation="{{animPlus}}" bindtap="plus">
+  <text class=" icon-edit lg text-gray" >+</text>
+</view>
 <form bindsubmit='comment'>
     <view class="cu-bar foot input">
         <input class='solid-bottom' focus="{{false}}" maxlength="300" cursor-spacing="10" name='say'></input>

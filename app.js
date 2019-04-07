@@ -1,17 +1,11 @@
 //app.js
 var time = require('utils/util.js')
-const Towxml = require('/towxml/main.js')
 App({
   onLaunch: function() {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
     wx.request({
         method:'post' ,
-        url: 'http://127.0.0.1:5000/mp/posts',
+        url: 'https://blogai.cn/mp/posts',
         success:res=>{
-            //console.log('success-request!')
             console.log(res.data)
             let post_ = res.data.posts;
           console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
@@ -27,7 +21,6 @@ App({
                 }
              }
           console.log('hou:' + post_[0]['time'])
-            
             this.globalData.posts = res.data.posts
             if (this.postsReadyCallback){
                 this.postsReadyCallback(res.posts)
@@ -40,9 +33,8 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code){
-          
+         
         }
       }
     })
@@ -69,14 +61,16 @@ App({
     
     wx.getSystemInfo({
       success: e => {
+          console.log('systemInfo:'+e)
         this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect();
+        console.log('custom:'+custom)
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
     })
   },
- towxml:new Towxml(),
+
   globalData: {
     userInfo: null,
     posts:''

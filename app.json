@@ -11,5 +11,32 @@
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },
+
+  "tabBar": {
+    "color": "#aaa",
+    "selectedColor": "#39b54a",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+        {
+            "pagePath": "pages/index/list",
+            "iconPath": "/images/tabbar/component.png",
+            "selectedIconPath": "/images/tabbar/component_cur.png",
+            "text": "文章"
+        },
+        {
+            "pagePath": "pages/index/index",
+            "iconPath": "/images/tabbar/about.png",
+            "selectedIconPath": "/images/tabbar/about_cur.png",
+            "text": "标签"
+        },
+        {
+            "pagePath": "pages/index/index",
+            "iconPath": "/images/tabbar/about.png",
+            "selectedIconPath": "/images/tabbar/about_cur.png",
+            "text": "我的"
+        }
+    ]
+}, 
   "sitemapLocation": "sitemap.json"
 }
