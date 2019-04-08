@@ -1,0 +1,51 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+    </view>
+</view>
+<view class="cu-timeline">
+
+  <view class="cu-item text-green">
+    <view class="bg-gradual-green content shadow-blur">
+      <view class="cu-capsule radius">
+        <view class="cu-tag line-white">2019/03/28</view>
+      </view>
+
+      <view class="cu-card article {{isCard?'no-card':''}}">
+        <view class="cu-item shadow">
+          <view class="content">
+            <view class="desc">
+              <view class="text-content"> 折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！</view>
+            </view>
+            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+    <view class="cu-item text-green">
+    <view class="bg-gradual-green content shadow-blur">
+      <view class="cu-capsule radius">
+        <view class="cu-tag line-white">2019/03/28</view>
+      </view>
+
+      <view class="cu-card article {{isCard?'no-card':''}}">
+        <view class="cu-item shadow">
+          <view class="content">
+            <view class="desc">
+              <view class="text-content"> 折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！</view>
+            </view>
+            <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="aspectFill"></image>
+
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+</view>

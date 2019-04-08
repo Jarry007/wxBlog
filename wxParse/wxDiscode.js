@@ -106,14 +106,13 @@ function strcharacterDiscode(str){
     str = str.replace(/&nbsp;/g, ' ');
     str = str.replace(/&quot;/g, "'");
     str = str.replace(/&amp;/g, '&');
-<<<<<<< HEAD
+
      str = str.replace(/&lt;/g, '‹');
      str = str.replace(/&gt;/g, '›');
 
-=======
     str = str.replace(/&lt;/g, '‹');
     str = str.replace(/&gt;/g, '›');
->>>>>>> 48e3e41b24ab9d411d6a428528f0f3266a3ba44f
+
     //str = str.replace(/&lt;/g, '<');
     //str = str.replace(/&gt;/g, '>');
     str = str.replace(/&#8226;/g, '•');

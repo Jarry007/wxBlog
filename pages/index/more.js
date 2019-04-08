@@ -9,11 +9,7 @@ Page({
         reply:'',
         parse:'',
         show:{},
-        isPopping: false,//是否已经弹出
-        animPlus: {},//旋转动画
-        animCollect: {},//item位移,透明度
-        animTranspond: {},//item位移,透明度
-        animInput: {},//item位移,透明度
+      
 
     },
 
@@ -39,117 +35,34 @@ Page({
        
         WxParse.wxParse('wxshow', 'html', parse, this, 20);
     },
-    zan (e){
-        console.log(e.detail)
-    },
+    comment(e) {
 
-    onReady: function () {
+        let comment = e.detail.value.comment;
 
-    },
-
-    onShow: function () {
-
-    },
-    plus: function () {
-        if (this.data.isPopping) {
-            //缩回动画
-            this.popp();
-            this.setData({
-                isPopping: false
-            })
-        } else if (!this.data.isPopping) {
-            //弹出动画
-            this.takeback();
-            this.setData({
-                isPopping: true
-            })
-        }
-    },
-    input: function () {
-        console.log("input")
-    },
-    transpond: function () {
-        console.log("transpond")
-    },
-    collect: function () {
-        console.log("collect")
-    },
-
-    //弹出动画
-    popp: function () {
-        //plus顺时针旋转
-        var animationPlus = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationcollect = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationTranspond = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationInput = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        animationPlus.rotateZ(180).step();
-        animationcollect.translate(-100, -100).rotateZ(180).opacity(1).step();
-        animationTranspond.translate(-140, 0).rotateZ(180).opacity(1).step();
-        animationInput.translate(-100, 100).rotateZ(180).opacity(1).step();
-        this.setData({
-            animPlus: animationPlus.export(),
-            animCollect: animationcollect.export(),
-            animTranspond: animationTranspond.export(),
-            animInput: animationInput.export(),
-        })
-    },
-    //收回动画
-    takeback: function () {
-        //plus逆时针旋转
-        var animationPlus = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationcollect = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationTranspond = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        var animationInput = wx.createAnimation({
-            duration: 500,
-            timingFunction: 'ease-out'
-        })
-        animationPlus.rotateZ(0).step();
-        animationcollect.translate(0, 0).rotateZ(0).opacity(0).step();
-        animationTranspond.translate(0, 0).rotateZ(0).opacity(0).step();
-        animationInput.translate(0, 0).rotateZ(0).opacity(0).step();
-        this.setData({
-            animPlus: animationPlus.export(),
-            animCollect: animationcollect.export(),
-            animTranspond: animationTranspond.export(),
-            animInput: animationInput.export(),
-        })
-    },
-
-    comment:function(event){
-        let obj = event.detail.value.say;
-        console.log('comment is :'+obj)
         wx.request({
-            url: 'http://127.0.0.1:5000/request_data',
-            data:{
-                data:obj
+            url: 'http://127.0.0.1:5000/mp/comment',
+            header: {
+                'content-type': 'application/json/jarry' // 默认值
             },
-            success:res=>{
-                console.log('python get success'+res)
+            data: {
+                comment: comment,
+                post: '1',
+                user: 'dddadsdas'
             },
-            fail:err=>{
-                console.log('python get fail'+err)
+            name: 'comment',
+            method: 'POST',
+            success: res => {
+                console.log('success:' + res.data.comment)
+            },
+            fail: err => {
+                console.log('fail:' + err)
             }
         })
-    }
+    },
+    like(e) {
+        console.log('like')
+    },
+    collection(e) {
+        console.log('collection')
+    },
 })

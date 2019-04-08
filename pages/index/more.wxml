@@ -66,24 +66,16 @@
 </view>
 
         </view>
-    <view class='img-style' animation="{{animCollect}}" bindtap="collect">
-  <text  class="icon-edit lg text-gray" >评论</text>
+<view class='cu-load bg-blue over'></view>
+  <form bindsubmit='comment'>
+  <view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
+  <input class="solid-bottom" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10" name='comment'></input>
+<button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
+    <view class="action" bindtap='like'>
+    <text class="icon-favor text-grey"></text>
   </view>
-  <view class='img-style' animation="{{animTranspond}}" >
-  <text class=" icon-edit lg text-gray" bindtap="transpond">赞</text>
+    <view class="action" bindtap='collection'>
+    <text class="icon-like text-grey"></text>
   </view>
-  <view class='img-style' animation="{{animInput}}" bindtap="input">
-  <text  class="icon-edit lg text-gray" >转发</text>
-  </view>
-  <view class='img-plus-style bg-purple padding radius text-center shadow-blur' animation="{{animPlus}}" bindtap="plus">
-  <text class=" icon-edit lg text-gray" >+</text>
 </view>
-<form bindsubmit='comment'>
-    <view class="cu-bar foot input">
-        <input class='solid-bottom' focus="{{false}}" maxlength="300" cursor-spacing="10" name='say'></input>
-        <view class='action'>
-            <text class='icon-emojifill text-grey'></text>
-        </view>
-        <button class='cu-btn bg-green shadow' form-type='submit'>发送</button>
-    </view>
 </form>

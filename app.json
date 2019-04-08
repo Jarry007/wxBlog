@@ -2,7 +2,10 @@
   "pages": [
     "pages/index/list",
     "pages/index/index",
-    "pages/index/more"
+    "pages/index/more",
+    "pages/temp/index",
+    "pages/temp/flash",
+    "pages/temp/like"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,7 +34,7 @@
             "text": "标签"
         },
         {
-            "pagePath": "pages/index/index",
+            "pagePath": "pages/temp/index",
             "iconPath": "/images/tabbar/about.png",
             "selectedIconPath": "/images/tabbar/about_cur.png",
             "text": "我的"

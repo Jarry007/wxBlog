@@ -20,12 +20,7 @@ App({
                     }
                 }
              }
-<<<<<<< HEAD
-          console.log('hou:' + post_[0]['time'])
-=======
-          //console.log('hou:' + post_[0]['time'])
-            
->>>>>>> 48e3e41b24ab9d411d6a428528f0f3266a3ba44f
+
             this.globalData.posts = res.data.posts
             if (this.postsReadyCallback){
                 this.postsReadyCallback(res.posts)

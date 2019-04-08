@@ -1,0 +1,93 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+    </view>
+</view>
+<view class="margin-xl padding-xl bg-white radius shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+    <block wx:else>
+      <view class='text-center'>
+        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+        <view class="padding">{{userInfo.nickName}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+
+<view class="cu-list menu card-menu margin-top">
+    <view class="cu-item arrow">
+     <navigator class="content" url="/pages/temp/flash" hover-class="none">
+        <text class="icon-emojiflashfill text-pink"></text>
+        <text class="text-grey">我的消息</text>
+        </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact">
+        <text class="icon-btn text-yellow"></text>
+        <text class="text-grey">我的发言</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
+        <text class="icon-discoverfill text-orange"></text>
+        <text class="text-grey">我的收藏</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+    <navigator class="content" url="/pages/temp/like" hover-class="none">
+    
+        <text class="icon-emojiflashfill text-pink"></text>
+        <text class="text-grey">我的赞</text>
+        </navigator>
+  
+
+    </view>
+   <view class="cu-item arrow">
+      <view class="content">
+        <text class="icon-btn text-green"></text>
+        <text class="text-grey">按钮</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn round bg-green shadow">
+          <text class="icon-upload"></text> 上传</button>
+      </view>
+    </view>
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="icon-tagfill text-red"></text>
+        <text class="text-grey">标签</text>
+      </view>
+      <view class="action">
+        <view class="cu-tag round bg-orange light">音乐</view>
+        <view class="cu-tag round bg-olive light">电影</view>
+        <view class="cu-tag round bg-blue light">旅行</view>
+      </view>
+
+
+    </view>
+    <view class="cu-item">
+      <view class="content padding-tb-sm">
+        <view>
+          <text class="icon-clothesfill text-blue margin-right-xs"></text> 多行Item</view>
+        <view class="text-gray text-sm">
+          <text class="icon-infofill margin-right-xs"></text> 小目标还没有实现！</view>
+      </view>
+      <view class="action">
+        <switch class="switch-sex sm" bindchange="switchSex"></switch>
+      </view>
+    </view>
+  </view>
+
+
+
+
+
+<view class="text-center margin-top">
+  <text class="text-grey text-xl">{{motto}}</text>
+</view>

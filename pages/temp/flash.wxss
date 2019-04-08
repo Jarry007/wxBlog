@@ -1,0 +1,5 @@
+/* pages/index/flash.wxss */
+.label{
+  display: inline;
+  position: relative
+}
