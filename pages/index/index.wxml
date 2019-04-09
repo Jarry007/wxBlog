@@ -1,5 +1,5 @@
 <view class='cu-custom' style="height:{{CustomBar}}px;">
-  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+  <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <view class='content' style='top:{{StatusBar}}px;'>上传图片</view>
   </view>
 </view>

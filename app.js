@@ -61,10 +61,10 @@ App({
     
     wx.getSystemInfo({
       success: e => {
-          console.log('systemInfo:'+e)
+          console.log({'systemInfo':e})
         this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect();
-        console.log('custom:'+custom)
+        console.log({'custom:':custom})
         this.globalData.Custom = custom;
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }

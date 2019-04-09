@@ -1699,15 +1699,15 @@ button.icon.lg {
   min-height: 64rpx;
   flex: 1;
   font-size: 30rpx;
-  margin: 0 20rpx;
+  margin: 0 10rpx;
 }
 
 .cu-bar.input .action {
-  margin-left: 20rpx;
+  margin-left: 25rpx;
 }
 
 .cu-bar.input .action [class*="icon"] {
-  font-size: 48rpx;
+  font-size: 60rpx;
 }
 
 .cu-bar.input input+.action {
@@ -2075,8 +2075,7 @@ button.icon.lg {
   background-color: transparent;
   padding: 0rpx 30rpx;
   word-wrap: normal;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+ 
 }
 
 .cu-card.case.no-card .image {
@@ -3290,6 +3289,7 @@ scroll-view.cu-steps .cu-item {
 .bg-shadeBottom {
   background-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));
   color: #fff;
+  font-size: 120%;
 }
 
 .bg-red.light {

@@ -4,7 +4,9 @@ const app =getApp()
 Page({
     data: {
         posts:[],
-        cardCur:0
+        cardCur:0,
+        StatusBar: app.globalData.StatusBar,
+        CustomBar: app.globalData.CustomBar,
     },
     onLoad: function (options) {
         

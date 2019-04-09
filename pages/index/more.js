@@ -1,66 +1,64 @@
 var WxParse = require('../../wxParse/wxParse.js');
+var like_ = require('../index/comment.js');
 const app = getApp()
 Page({
 
     data: {
-        posts:[],
         post:'',
-        comments:[],
-        reply:'',
-        parse:'',
-        show:{},
-      
+        StatusBar: app.globalData.StatusBar,
+        CustomBar: app.globalData.CustomBar,
+        liked:false,
+        like_count:'',
+        comment_count:'',
+        view_count:''
 
     },
 
     onLoad: function (options) {
-        if (app.globalData.posts && app.globalData.posts !=''){
-            this.setData({
-                posts:app.globalData.posts
-            })
-        }
-        else{
-            app.postsReadyCallback = res => {
+       // console.log('this page id is :'+options.id)
+        let posts = app.globalData.posts
+        for(let i=0 ;i<posts.length;i++){
+            if (posts[i]['id']==options.id){
+               // console.log(i)
+                let view_count= posts[i]['view_count'];
+                view_count ++;
                 this.setData({
-                    posts: app.globalData.posts
+                    post: posts[i],
+                    like_count: posts[i]['like_count'],
+                    comment_count:posts[i]['comment'],
+                    view_count:view_count
                 })
             }
-        }
-        console.log('this page id is :'+options.id)
-        let posts = this.data.posts
-        this.setData({
-            post:posts[options.id]
-        })
-        let parse = this.data.post.body_html;
-       
+        }   
+        let parse = this.data.post.body_html; 
         WxParse.wxParse('wxshow', 'html', parse, this, 20);
     },
-    comment(e) {
-
-        let comment = e.detail.value.comment;
-
-        wx.request({
-            url: 'http://127.0.0.1:5000/mp/comment',
-            header: {
-                'content-type': 'application/json/jarry' // 默认值
-            },
-            data: {
-                comment: comment,
-                post: '1',
-                user: 'dddadsdas'
-            },
-            name: 'comment',
-            method: 'POST',
-            success: res => {
-                console.log('success:' + res.data.comment)
-            },
-            fail: err => {
-                console.log('fail:' + err)
-            }
-        })
-    },
     like(e) {
-        console.log('like')
+      //  like_.like()
+        let like_count = this.data.like_count,
+        liked = this.data.liked;
+        if (!liked){
+                liked= true,
+                like_count++;
+            wx.showToast({
+                title: '点赞成功',
+                icon: 'success',
+                duration: 2000
+            })   
+        }else{
+                liked= false,
+                like_count--;
+            wx.showToast({
+                title: '取消成功',
+                icon: 'success',
+                duration: 2000
+            })
+        }
+        this.setData({
+            liked:liked,
+            like_count:like_count
+        })
+        
     },
     collection(e) {
         console.log('collection')

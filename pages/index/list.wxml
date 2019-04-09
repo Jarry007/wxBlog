@@ -1,10 +1,15 @@
+<view class='cu-custom' style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class='content' style='top:{{StatusBar}}px;'>主页</view>
+  </view>
+</view>
 <swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{4}}" wx:key class="{{cardCur==index?'cur':''}}">
     <view class='bg-img shadow-blur' style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" bindtap='more' data-id='{{index}}'></view>
   </swiper-item>
 </swiper>
 <view class="cu-card case {{isCard?'no-card':''}}">
-  <view wx:for="{{posts}}" wx:key='{{item}}' class="cu-item shadow" bindtap='more' data-id='{{index}}'>
+  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-item shadow" bindtap='more' data-id='{{item.id}}'>
     <view class='image'>
       <image src="https://image.weilanwl.com/img/4x3-1.jpg" mode="widthFix"></image>
       <view class="cu-tag bg-blue">原创</view>

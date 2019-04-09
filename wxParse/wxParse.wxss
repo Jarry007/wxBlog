@@ -131,7 +131,7 @@ view{
 }
 .wxParse-li-text{
     align-items: center;
-    line-height: 10rpx;
+    
 }
 
 .wxParse-li-square{

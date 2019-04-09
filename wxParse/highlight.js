@@ -25,23 +25,19 @@ function highlight(data){
     var label = tagArr[i].match(/<*([^> ]*)/)[1];
    // console.log('label:'+label)
     if (tagArr[i + 1] === '</' + label + '>') { 
-      console.log('class:'+cls);
       if (label === 'code' ) { 
         let lang = cls.split(' ')[0]; 
         if (/lang-(.*)/i.test(lang)) { 
           lang = lang.replace(/lang-(.*)/i, '$1');
-          console.log('lang:'+lang)
         }
         else if (/languages?-(.*)/i.test(lang)) {
           lang = lang.replace(/languages?-(.*)/i, '$1'); 
-          console.log('languages:'+lang)
         }
         if (langArr.indexOf(lang) == -1 || lang == null || lang == 'none' || lang == 'null') {
         }
         else {
         
           let code = data.substring(indexArr[i], indexArr[i + 1]).replace(/<code[^>]*>/, '');
-         console.log('code：'+code)
 
           let hcode = Prism.highlight(code, Prism.languages[lang], lang);
           html = html.replace(code, hcode);

@@ -4,8 +4,8 @@ const app = getApp()
 
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
+      StatusBar: app.globalData.StatusBar,
+      CustomBar: app.globalData.CustomBar,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -35,8 +35,11 @@ Page({
           code = that.data.code;
           wx.request({
             url: 'https://api.weixin.qq.com/sns/jscode2session?appid'+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code',
+              header: {
+                  'content-type': 'application/x-www-form-urlencoded'
+              },
             success:function(s){
-              console.log(s)
+              console.log({'s':s})
             }
           })
         }
