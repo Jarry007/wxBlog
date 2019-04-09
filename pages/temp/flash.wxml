@@ -5,7 +5,12 @@
         </navigator>
     </view>
 </view>
-<view class="cu-list menu-avatar">
+<view class="cu-bar bg-white solid-bottom}}">
+<view class='action'>
+    <text class='icon-titles text-orange '></text><view class="cu-capsule radius"><view class='cu-tag bg-red'>未读</view> <view class='cu-tag line-red'>12</view></view>
+  </view>
+  </view>
+<view class="cu-list menu-avatar message">
     <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{4}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
       <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
       <view class="content">
@@ -15,7 +20,7 @@
       </view>
       <view class="action">
         <view class="text-grey text-xs">22:20</view>
-        <view class="cu-tag round bg-grey sm">5</view>
+        <view class="cu-tag round bg-grey sm">3</view>
       </view>
       <view class="move">
         <view class="bg-grey" bindtap='toTop'>置顶</view>

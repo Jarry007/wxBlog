@@ -9,11 +9,11 @@
   </swiper-item>
 </swiper>
 <view class="cu-card case {{isCard?'no-card':''}}">
-  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-item shadow" bindtap='more' data-id='{{item.id}}'>
+  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow" bindtap='more' data-id='{{item.id}}'>
     <view class='image'>
-      <image src="https://image.weilanwl.com/img/4x3-1.jpg" mode="widthFix"></image>
+      <image src="https://blogai.cn/static/img/blog/blog-2.jpg" mode="widthFix"></image>
       <view class="cu-tag bg-blue">原创</view>
-      <view class='cu-bar bg-shadeBottom'>{{item.tittle}}</view>
+      <view class='cu-bar bg-shadeBottom'><text class="text-cut">{{item.tittle}}</text></view>
     </view>
     <view class="cu-list menu menu-avatar">
       <view class="cu-item">

@@ -9,48 +9,49 @@
     </view>
 </view>
 <view class="cu-card dynamic {{isCard?'no-card':''}}">
-    <view class="">
+
         <view class="cu-list menu menu-avatar">
             <view class="cu-item">
                 <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
                 <view class='content flex-sub'>
-                    <view>{{post.link_.username}}</view>
+                <view class='text-blod'>{{post.tittle}}</view>
                     <view class='text-gray text-sm flex justify-between'>
-                        {{post.timestamp}}
+                    <text class="icon-people">{{post.link_.username}}</text> 
+                        <text class="icon-time">{{post.time}}</text> 
+                        <text class="icon-attention">{{view_count}}</text> 
+            <text class="icon-appreciate{{liked?'fill':''}} text-{{liked?'red':'gray'}}" > {{like_count}}</text>
+            <text class="icon-message"> {{comment_count}}</text>
                     </view>
                 </view>
             </view>
-        </view>
+      
+       
         <view class='text-content'>
-        <view><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
+        <view class='contarin'><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
         <view class="grid {{isCard?'col-3 grid-square':'col-1'}} flex-sub padding-lr">
             <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);" wx:for="{{isCard?9:1}}" wx:key>
             </view>
         </view>
-        <view class='text-gray text-sm text-right padding'>
-            <text class="icon-attentionfill"></text> {{view_count}}
-            <text class="icon-appreciate{{liked?'fill':''}} text-{{liked?'red':'gray'}}" ></text> {{like_count}}
-            <text class="icon-messagefill"></text> {{comment_count}}
-        </view>
+        <view class="cu-bar bg-white solid-bottom}}">
+  <view class='action'>
+    <text class='icon-titles text-orange '></text><view class="cu-capsule radius"><view class='cu-tag bg-red'>评论</view> <view class='cu-tag line-red'>{{comment_count}}</view></view>
+  </view>
+ 
+</view>
         <view class="cu-list menu menu-avatar comment solids-top">
             <view class="cu-item" wx:for="{{post.new_comment.comments}}" wx:key='{{item}}'>
                 <view class="cu-avatar round" style="background-image:url({{item._link.avatar}});"></view>
                 <view class='content'>
-                    <view class="cu-capsule ">
-                        <view class='cu-tag line-black'>
-                            <text>{{item._link.username}}</text>
-                        </view>
-                    </view>
-                    <view class='text-gray text-content text-df'>
+                     <view class="text-blod">{{item._link.username}}</view> 
+                    <view class='text-black text-df'>
                         {{item.body}}
-
                     </view>
-                    <view class='bg-grey padding-sm radius margin-top-sm  text-sm' wx:for="{{item.replies.r}}" wx:key wx:for-item='reply'>
-                        <view class="flex {{index!=0?'margin-top-sm':'' }}">
-                        <view class='cu-tag line-white'>
-                            <view>{{reply._link.username}}</view>
-                            </view>
-                            <view class='flex-sub'>{{reply.body}}</view>
+                    <view class='bg-gray padding-sm radius margin-top-sm  text-sm' wx:for="{{item.replies.r}}" wx:key wx:for-item='reply'>
+                        <view class="flex">
+                        
+                            <view class="text-blod text-blue">{{reply._link.username}}</view> :
+                            
+                            <view class='flex-sub text-grey'>{{reply.body}}</view>
                         </view>
                     </view>
                     <view class='margin-top-sm flex justify-between'>

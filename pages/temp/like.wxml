@@ -10,7 +10,8 @@
   <view class="cu-item text-green">
     <view class="bg-gradual-green content shadow-blur">
       <view class="cu-capsule radius">
-        <view class="cu-tag line-white">2019/03/28</view>
+        <view class="cu-tag bg-orange">2019/03/28</view>
+        <view class="cu-tag line-orange">收藏</view>
       </view>
 
       <view class="cu-card article {{isCard?'no-card':''}}">
@@ -30,7 +31,8 @@
     <view class="cu-item text-green">
     <view class="bg-gradual-green content shadow-blur">
       <view class="cu-capsule radius">
-        <view class="cu-tag line-white">2019/03/28</view>
+        <view class="cu-tag bg-grey">2019/03/28</view>
+        <view class="cu-tag bg-orange">收藏</view>
       </view>
 
       <view class="cu-card article {{isCard?'no-card':''}}">
