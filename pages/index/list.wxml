@@ -3,12 +3,17 @@
     <view class='content' style='top:{{StatusBar}}px;'>主页</view>
   </view>
 </view>
-<swiper class="card-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-  <swiper-item wx:for="{{4}}" wx:key class="{{cardCur==index?'cur':''}}">
-    <view class='bg-img shadow-blur' style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" bindtap='more' data-id='{{index}}'></view>
+<swiper class="card-swiper round-dot {{news? '':'lazy_swiper'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+  <swiper-item wx:for="{{news}}" wx:key  wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
+    <view class="bg-img shadow-blur " style="background-image:url(https://image.weilanwl.com/img/4x3-{{index+1}}.jpg)" bindtap='more' data-id='{{new_.id}}'><view class='padding-xl text-white'>
+    <view class='padding-xs text-xl'>
+      {{new_.tittle}}
+    </view>
+  </view></view>
+
   </swiper-item>
 </swiper>
-<view class="cu-card case {{isCard?'no-card':''}}">
+<view class="cu-card case {{news?'':'lazy_post'}}">
   <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow" bindtap='more' data-id='{{item.id}}'>
     <view class='image'>
       <image src="https://blogai.cn/static/img/blog/blog-2.jpg" mode="widthFix"></image>

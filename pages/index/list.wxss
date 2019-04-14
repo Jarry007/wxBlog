@@ -1,1 +1,14 @@
 /* pages/index/list.wxss */
+.lazy_swiper{
+    background-image:url(https://image.weilanwl.com/img/4x3-1.jpg);                          
+    margin: 80rpx;
+    height: 300rpx;
+    border-radius: 10rpx;
+    
+}
+.lazy_post{
+    background-image:url(https://image.weilanwl.com/img/4x3-2.jpg);                          
+    margin: 20rpx;
+    height: 300rpx;
+    border-radius: 10rpx;
+}

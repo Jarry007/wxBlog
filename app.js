@@ -2,13 +2,19 @@
 var time = require('utils/util.js')
 App({
   onLaunch: function() {
+      let url_ = this.globalData.url;
     wx.request({
         method:'post' ,
-        url: 'https://blogai.cn/mp/posts',
+        url: url_+'mp/posts',
         success:res=>{
             console.log(res.data)
             let post_ = res.data.posts;
+            let new_ = res.data.news;
          // console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
+            this.globalData.new_ = new_;
+            if (this.newsReadyCallback) {
+                this.newsReadyCallback(res.news)
+            }
             for(var i=0;i<post_.length;i++){
               post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
              let comment_ = post_[i].new_comment.comments;
@@ -20,7 +26,6 @@ App({
                     }
                 }
              }
-
             this.globalData.posts = res.data.posts
             if (this.postsReadyCallback){
                 this.postsReadyCallback(res.posts)
@@ -29,6 +34,7 @@ App({
         fail:err=>{
             console.log('errMsg!:'+err)
         }
+        
     })
     // 登录
     wx.login({
@@ -38,6 +44,7 @@ App({
         }
       }
     })
+      
  
     wx.getSetting({
       success: res => {
@@ -69,10 +76,17 @@ App({
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
       }
     })
+      wx.showLoading({
+          title: '加载中...',
+          icon: 'loading',
+          duration: 3000
+      })
   },
 
-  globalData: {
+  globalData: { 
     userInfo: null,
-    posts:''
+    posts:'',
+    url:'https://blogai.cn/',
+    new_:''
   }
 })

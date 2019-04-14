@@ -5,6 +5,7 @@ Page({
     data: {
         posts:[],
         cardCur:0,
+        news :'',
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
     },
@@ -21,6 +22,18 @@ Page({
             }
 
         }
+        if (app.globalData.new_ != []) {
+            console.log('先于onlaunch' + app.globalData.new_)
+        }
+        else {
+            app.newsReadyCallback = res => {
+                this.setData({
+                    news: app.globalData.new_
+                })
+            }
+
+        }
+        console.log({'new':this.data.news})
     },
     onReady: function () {
 
