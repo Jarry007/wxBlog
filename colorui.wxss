@@ -2092,7 +2092,7 @@ button.icon.lg {
 
 .cu-card.case .image {
   position: relative;
-  background-image: 'https://image.weilanwl.com/img/4x3-1.jpg';
+  background:cadetblue;
 }
 
 .cu-card.case .image image {
@@ -2478,6 +2478,7 @@ swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active {
   border-radius: 10rpx;
   transform: scale(0.9);
   transition: all 0.2s ease-in 0s;
+  background: cornflowerblue;
 }
 
 .card-swiper swiper-item.cur .bg-img {
