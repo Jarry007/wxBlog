@@ -5,19 +5,13 @@ App({
       let url_ = this.globalData.url;
     wx.request({
         method:'post' ,
-        url: url_+'mp/posts',
+        url: url_+'mp/new',
         success:res=>{
-            console.log(res.data)
-            let post_ = res.data.posts;
             let new_ = res.data.news;
-         // console.log('xian:' + new Date(post_[0]['time'].replace('GMT','')));
-            this.globalData.new_ = new_;
-            if (this.newsReadyCallback) {
-                this.newsReadyCallback(res.news)
-            }
-            for(var i=0;i<post_.length;i++){
-              post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
-             let comment_ = post_[i].new_comment.comments;
+            
+            for(var i=0;i<new_.length;i++){
+              new_[i]['time'] = time.formatTime(new Date(new_[i]['time'].replace('GMT', '')))
+             let comment_ = new_[i].new_comment.comments;
                 for (var j = 0; j < comment_.length; j++) {
                   comment_[j]['time'] = time.formatTime(new Date(comment_[j]['time'].replace('GMT', '')))
                     let reply_ = comment_[j].replies.r;
@@ -26,9 +20,10 @@ App({
                     }
                 }
              }
-            this.globalData.posts = res.data.posts
-            if (this.postsReadyCallback){
-                this.postsReadyCallback(res.posts)
+    
+            this.globalData.new_ = new_;
+            if (this.newsReadyCallback) {
+                this.newsReadyCallback(res.news)
             }
         },
         fail:err=>{
@@ -85,8 +80,7 @@ App({
 
   globalData: { 
     userInfo: null,
-    posts:'',
-    url:'https://blogai.cn/',
+    url:'http://127.0.0.1:5000/',
     new_:''
   }
 })

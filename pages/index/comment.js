@@ -46,7 +46,7 @@ function get_openid(){
     }
 })
 }
-function like(e){
+function like(){
     get_openid()
     let id = get_openid.final_data
     console.log('like'+id)

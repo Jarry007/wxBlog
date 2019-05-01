@@ -15,8 +15,8 @@ Page({
     },
 
     onLoad: function (options) {
-       // console.log('this page id is :'+options.id)
-        let posts = app.globalData.posts
+        if (options.id){
+        let posts = app.globalData.new_
         for(let i=0 ;i<posts.length;i++){
             if (posts[i]['id']==options.id){
                // console.log(i)
@@ -29,7 +29,18 @@ Page({
                     view_count:view_count
                 })
             }
-        }   
+        } }
+        else{
+            let posts = wx.getStorageSync('postsdata');
+            let view_count = posts['view_count'];
+            view_count++;
+            this.setData({
+                post:posts,
+                like_count:posts['like_count'],
+                comment_count:posts['comment'],
+                view_count:view_count
+            })
+        }  
         let parse = this.data.post.body_html; 
         WxParse.wxParse('wxshow', 'html', parse, this, 20);
     },
@@ -44,7 +55,8 @@ Page({
                 title: '点赞成功',
                 icon: 'success',
                 duration: 2000
-            })   
+            }) 
+            like_.like()  
         }else{
                 liked= false,
                 like_count--;
@@ -58,6 +70,7 @@ Page({
             liked:liked,
             like_count:like_count
         })
+
         
     },
     collection(e) {

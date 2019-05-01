@@ -5,7 +5,7 @@
         <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
             <text class='icon-back'></text> 返回
         </navigator>
-        <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}</view>
+        <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}-{{post.id}}</view>
     </view>
 </view>
 <view class="cu-card dynamic {{isCard?'no-card':''}}">
