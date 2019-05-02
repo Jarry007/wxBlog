@@ -1,5 +1,5 @@
 
-function get_openid(){
+function get_openid(num){
     var final_data = '';
     wx.login({
     success: res => {
@@ -10,7 +10,8 @@ function get_openid(){
                     let info = {
                         encryptedData: e.encryptedData,
                         iv: e.iv,
-                        code: res.code
+                        code: res.code,
+                        num:num
                     }
                     wx.request({
                         url: 'http://127.0.0.1:5000/mp/like',
@@ -46,8 +47,8 @@ function get_openid(){
     }
 })
 }
-function like(){
-    get_openid()
+function like(num){
+    get_openid(num)
     let id = get_openid.final_data
     console.log('like'+id)
 }

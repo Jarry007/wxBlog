@@ -5,7 +5,8 @@
     "pages/index/more",
     "pages/temp/index",
     "pages/temp/flash",
-    "pages/temp/like"
+    "pages/temp/like",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

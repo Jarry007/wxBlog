@@ -6,7 +6,7 @@ App({
     wx.request({
         method:'post' ,
         url: url_+'mp/new',
-        success:res=>{
+        success:res=>{ 
             let new_ = res.data.news;
             
             for(var i=0;i<new_.length;i++){
