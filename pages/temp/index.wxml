@@ -21,7 +21,7 @@
 
 <view class="cu-list menu card-menu margin-top">
     <view class="cu-item arrow">
-     <navigator class="content" url="/pages/temp/flash" hover-class="none">
+     <navigator class="content" url="/pages/temp/notice" hover-class="none">
         <text class="icon-emojiflashfill text-pink"></text>
         <text class="text-grey">我的消息</text>
         </navigator>
@@ -30,7 +30,7 @@
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="contact">
         <text class="icon-btn text-yellow"></text>
-        <text class="text-grey">我的发言</text>
+        <text class="text-grey">联系我</text>
       </button>
     </view>
     <view class="cu-item arrow">
@@ -49,14 +49,10 @@
 
     </view>
    <view class="cu-item arrow">
-      <view class="content">
+      <navigator class="content" url="/pages/temp/comment" hover-class="none">
         <text class="icon-btn text-green"></text>
-        <text class="text-grey">按钮</text>
-      </view>
-      <view class="action">
-        <button class="cu-btn round bg-green shadow">
-          <text class="icon-upload"></text> 上传</button>
-      </view>
+        <text class="text-grey">我的评论</text>
+      </navigator>
     </view>
     <view class="cu-item {{menuArrow?'arrow':''}}">
       <view class="content">

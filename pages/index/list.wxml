@@ -1,4 +1,4 @@
-<view class='cu-custom' style="height:{{CustomBar}}px;">
+<view class='cu-custom' style="height:{{CustomBar}}px;" bindtap='totop'>
   <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <view class='content' style='top:{{StatusBar}}px;'>主页</view>
   </view>

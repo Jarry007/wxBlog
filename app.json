@@ -6,7 +6,9 @@
     "pages/temp/index",
     "pages/temp/flash",
     "pages/temp/like",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/temp/comment",
+    "pages/temp/notice"
   ],
   "window": {
     "backgroundTextStyle": "light",

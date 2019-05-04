@@ -1,2 +1,8 @@
 
-<button bindtap='login'>登录</button>
+<button
+  wx:if="{{canIUse}}"
+  open-type="getUserInfo"
+  bindgetuserinfo="bindGetUserInfo"
+>
+  登录
+</button>

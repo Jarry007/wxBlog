@@ -10,6 +10,7 @@ Page({
         page :1,
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
+        first_tap:''
     },
     onLoad: function (options) {
         
@@ -58,7 +59,7 @@ Page({
  
     pagination(page){
         wx.request({
-            url: 'http://127.0.0.1:5000/mp/posts',
+            url: `${app.globalData.url}mp/posts`,
             header: {
                 'content-type': 'application/x-www-form-urlencoded'
             },
@@ -69,14 +70,20 @@ Page({
             success: u=> {
                 let items = u.data.posts,
                 posts = this.data.posts
-                
                 if(items.length != 0){
                     for (var i = 0; i < items.length; i++) {
                         items[i]['time'] = time.formatTime(new Date(items[i]['time'].replace('GMT', '')))
                     }
+                    if(page==1){
+                        this.setData({
+                            posts:items
+                        })
+                    }
+                    else{
                     this.setData({
                         posts: posts.concat(items)
                     })
+                    }
                 }
                 else{
                     wx.showToast({
@@ -94,13 +101,13 @@ Page({
     
     },
     onReachBottom: function () {
-        console.log('触底了')
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
             duration: 1000
         })
-        let page = this.data.page +1
+        let page = this.data.page +1;
+        console.log('page'+page)
         this.pagination(page)
         this.setData({
             page:page
@@ -111,5 +118,30 @@ Page({
     onPullDownRefresh(){
         wx.showNavigationBarLoading()
         console.log('到顶了')
+        wx.showLoading({
+            title: '刷新中...',
+            icon:'loading',
+            duration:1500
+        })
+        this.pagination(1)
+        this.setData({
+            page:1
+        })
+
+        
+    },
+    totop(e){
+        console.log(e.timeStamp)
+        let first = e.timeStamp
+        if(first-this.data.first_tap<300){
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration: 1000
+            })
+        }
+        this.setData({
+            first_tap:first
+        })
+        
     }
 })

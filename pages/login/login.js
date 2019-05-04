@@ -5,6 +5,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        canIUse: wx.canIUse('button.open-type.getUserInfo')
 
     },
 
@@ -12,68 +13,36 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        wx.getSetting({
+            success(res) {
+                if (res.authSetting['scope.userInfo']) {
+                    // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+                    wx.getUserInfo({
+                        success(res) {
+                            console.log(res.userInfo)
+                        }
+                    })
+                }
+            }
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
-    login(){
+    bindGetUserInfo(e) {
+        const accountInfo = wx.getAccountInfoSync()
+        console.log(accountInfo.miniProgram.appId)
+        console.log(e.detail.userInfo)
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 if (res.code) {
+                    console.log(res.code)
                     wx.getUserInfo({
                         success: e => {
                             let info = {
                                 encryptedData: e.encryptedData,
                                 iv: e.iv,
-                                code: res.code
+                                code: res.code,
+                                appid: accountInfo.miniProgram.appId
                             }
                             wx.request({
                                 url: 'http://127.0.0.1:5000/mp/login',
@@ -81,14 +50,13 @@ Page({
                                     'content-type': 'application/x-www-form-urlencoded'
                                 },
                                 data: {
-                                    info: JSON.stringify(info) //把object转化为json数据
+                                    info: JSON.stringify(info)
                                 },
                                 method: 'POST',
                                 success: function (u) {
-                                    console.log({ 'openid:': u.data })
                                     wx.setStorageSync('final_data', u.data)
                                     wx.navigateBack({
-                                        detal:1
+                                        detal: 1
                                     })
                                 },
                                 fail: function (f) {
@@ -96,8 +64,9 @@ Page({
                                 },
                             })
                         },
-                        fail: function () {
+                        fail: f => {
                             console.log('fail,login_fail')
+                            console.log
                             wx.showToast({
                                 title: '失败',
                             })

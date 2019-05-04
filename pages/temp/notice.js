@@ -1,15 +1,19 @@
-// pages/index/like.js
+// pages/temp/notice.js
 const app = getApp()
 var router = require('../index/router.js')
 Page({
 
- 
-  data: {
-      StatusBar: app.globalData.StatusBar,
-      CustomBar: app.globalData.CustomBar,
-      like:''
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        notice:''
 
-  },
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
     onLoad: function (options) {
         let stroage = wx.getStorageSync('final_data')
         console.log(stroage)
@@ -17,9 +21,10 @@ Page({
             let info = {
                 openId: stroage.openId
             };
-            router.route_request('mp/my_like',info).catch(res=>{
+            router.route_request('mp/notice', info).catch(res => {
+                console.log(res)
                 this.setData({
-                    like:res.all
+                    notice: res.all
                 })
             })
         }
@@ -31,5 +36,12 @@ Page({
 
     },
 
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function () {
 
+    },
+
+   
 })
