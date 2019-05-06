@@ -5,7 +5,7 @@
         <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
             <text class='icon-back'></text> 返回
         </navigator>
-        <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}-{{post.id}}</view>
+        <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}</view>
     </view>
 </view>
 <view class="cu-card dynamic {{isCard?'no-card':''}}">
@@ -26,7 +26,7 @@
             </view>
       
        
-        <view class='text-content'>
+        <view class='text-content' id='b_comment'>
         <view class='contarin'><template is="wxParse" data="{{wxParseData:wxshow.nodes}}"/></view>
         <view class="grid {{isCard?'col-3 grid-square':'col-1'}} flex-sub padding-lr">
             <view class="bg-img {{isCard?'':'only-img'}}" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);" wx:for="{{isCard?9:1}}" wx:key>

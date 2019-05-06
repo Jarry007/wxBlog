@@ -20,47 +20,33 @@ Page({
 
     onLoad: function(options) {
         if (options.id) {
-            let posts = app.globalData.new_
-            for (let i = 0; i < posts.length; i++) {
-                if (posts[i]['id'] == options.id) {
-
-                    let view_count = posts[i]['view_count'];
-                    view_count++;
-                    this.setData({
-                        post: posts[i],
-                        like_count: posts[i]['like_count'],
-                        comment_count: posts[i]['comment'],
-                        view_count: view_count,
-
-                    })
+            var posts = wx.getStorageSync('newsdata');
+        } else {
+            var posts = wx.getStorageSync('postsdata');
+        }
+        let view_count = posts['view_count'],
+            comments = posts.new_comment.comments,
+            like = posts.likes,
+            stroage = wx.getStorageSync('final_data');
+        if (stroage) {
+            let wx_uid = md_.md5(stroage['openId']);
+            for (var i = 0; i < like.length; i++) {
+                if (like[i].user_id == wx_uid) {
+                    var liked = true
                 }
             }
         } else {
-            let posts = wx.getStorageSync('postsdata'),
-                view_count = posts['view_count'],
-                comments = posts.new_comment.comments,
-                like = posts.likes,
-                stroage = wx.getStorageSync('final_data');
-            if (stroage) {
-                let wx_uid = md_.md5(stroage['openId']);
-                for (var i = 0; i < like.length; i++) {
-                    if (like[i].user_id == wx_uid) {
-                        var liked = true
-                    }
-                }
-            } else {
-                var liked = false
-            }
-            view_count++;
-            this.setData({
-                post: posts,
-                like_count: posts['like_count'],
-                comment_count: posts['comment'],
-                view_count: view_count,
-                comments: comments,
-                liked: liked
-            })
+            var liked = false
         }
+        view_count++;
+        this.setData({
+            post: posts,
+            like_count: posts['like_count'],
+            comment_count: posts['comment'],
+            view_count: view_count,
+            comments: comments,
+            liked: liked
+        })
         console.log(this.data.post)
         let parse = this.data.post.body_html;
         WxParse.wxParse('wxshow', 'html', parse, this, 20);
@@ -76,7 +62,6 @@ Page({
                     openId: stroage.openId,
                     num: num
                 };
-            console.log('num' + num)
             router.route_request('mp/like',info).catch(res=>{
                 console.log({'res':res})
             })
@@ -130,6 +115,7 @@ Page({
                     comments:res.new_comment.comments
                 })
             })
+            this.tobottom()
             
 
         } else {
@@ -202,5 +188,13 @@ Page({
 
 
         
+    },
+    tobottom(){
+        wx.createSelectorQuery().select('#b_comment').boundingClientRect(function (rect) {
+            // 使页面滚动到底部
+            wx.pageScrollTo({
+                scrollTop: rect.bottom
+            })
+        }).exec()
     }
 })

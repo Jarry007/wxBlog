@@ -5,38 +5,43 @@
         </navigator>
     </view>
 </view>
+<scroll-view scroll-x class="bg-white nav">
+  <view class='flex text-center'>
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{2}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      Tab{{index}}
+    </view>
+  </view>
+</scroll-view>
 <view class="cu-bar bg-white solid-bottom}}">
 <view class='action'>
-    <text class='icon-titles text-orange '></text><view class="cu-capsule radius"><view class='cu-tag bg-red'>未读</view> <view class='cu-tag line-red'>12</view></view>
+    <text class='icon-titles text-orange '></text><view class="cu-capsule radius">
+    
+    <view class='cu-tag bg-red' wx:if='{{tab2}}'>收到的回复</view>
+    <block wx:else>
+    <view class='cu-tag bg-red'>收到的赞</view>
+    </block>
+    </view>
   </view>
   </view>
 <view class="cu-list menu-avatar message">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{4}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{notice}}" wx:key wx:for-item='items' bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+      <view class="cu-avatar round lg" style="background-image:url({{items.user_avatar}});"></view>
       <view class="content">
-        <view class="text-grey">文晓港</view>
-        <view class="text-gray text-sm">
-          <text class="icon-infofill text-red"></text> 消息未送达</view>
+        <view class="text-grey" wx:if='{{tab2}}'>{{items.user_name}} 回复了您的评论</view>
+        <block wx:else>
+        <view class="text-grey">{{items.user_name}} 点赞了您的评论</view>
+        </block>
+        <view class="text-gray text-sm text-cut">
+          <text class="icon-comment text-purple"></text> {{items.comment_body}}</view>
       </view>
       <view class="action">
+            <view class="cu-tag round bg-red sm" wx:if='{{items.new}}' >
+      </view>
         <view class="text-grey text-xs">22:20</view>
-        <view class="cu-tag round bg-grey sm">3</view>
+        
       </view>
       <view class="move">
-        <view class="bg-grey" bindtap='toTop'>置顶</view>
         <view class="bg-red" bindtap='toDelect'>删除</view>
       </view>
     </view>
   </view>
-  <form bindsubmit='comment'>
-  <view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
-  <input class="solid-bottom" bindfocus="InputFocus" bindblur="InputBlur" adjust-position="{{false}}" focus="{{false}}" maxlength="300" cursor-spacing="10" name='comment'></input>
-<button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
-    <view class="action" bindtap='like'>
-    <text class="icon-favor text-grey"></text>
-  </view>
-    <view class="action" bindtap='collection'>
-    <text class="icon-like text-grey"></text>
-  </view>
-</view>
-</form>

@@ -1,11 +1,9 @@
 <view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-            <text class='icon-back'></text> 返回
-        </navigator>
+    <view class="cu-bar fixed bg-gradual-purple" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+         <view class='content' style='top:{{StatusBar}}px;'>我的</view>
     </view>
 </view>
-<view class="margin-xl padding-xl bg-white radius shadow-lg">
+<view class="margin-xl padding-lg bg-white radius shadow-lg">
   <view class="flex justify-center">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
     <block wx:else>
@@ -16,12 +14,46 @@
     </block>
   </view>
 </view>
+<view class="cu-list grid col-4 no-border ">
 
+  <view class="cu-item" >
+   <navigator class="content" url="/pages/temp/like" hover-class="none">
+    <view class='icon-cardboardfill text-red'>
+      <view class="cu-tag badge" >
+      </view>
+    </view>
+    <text>我的喜欢</text>
+    </navigator>
+  </view>
+  <view class="cu-item" >
+  <navigator class="content" url="/pages/temp/comment" hover-class="none">
+    <view class='icon-cardboardfill text-red'>
+      <view class="cu-tag badge" >
+      </view>
+    </view>
+    <text>我的评论</text>
+    </navigator>
+  </view>
+  <view class="cu-item" >
+    <view class='icon-cardboardfill text-red'>
+      <view class="cu-tag badge" >
+      </view>
+    </view>
+    <text>我的收藏</text>
+  </view>
+  <view class="cu-item" >
+    <view class='icon-noticefill text-red'>
+      <view class="cu-tag badge" >
+      99
+      </view>
+    </view>
+    <text>消息</text>
+  </view>
+</view>
 
-
-<view class="cu-list menu card-menu margin-top">
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="cu-item arrow">
-     <navigator class="content" url="/pages/temp/notice" hover-class="none">
+     <navigator class="content" url="/pages/temp/flash" hover-class="none">
         <text class="icon-emojiflashfill text-pink"></text>
         <text class="text-grey">我的消息</text>
         </navigator>
@@ -45,8 +77,6 @@
         <text class="icon-emojiflashfill text-pink"></text>
         <text class="text-grey">我的赞</text>
         </navigator>
-  
-
     </view>
    <view class="cu-item arrow">
       <navigator class="content" url="/pages/temp/comment" hover-class="none">
@@ -54,18 +84,12 @@
         <text class="text-grey">我的评论</text>
       </navigator>
     </view>
-    <view class="cu-item {{menuArrow?'arrow':''}}">
-      <view class="content">
-        <text class="icon-tagfill text-red"></text>
-        <text class="text-grey">标签</text>
-      </view>
-      <view class="action">
-        <view class="cu-tag round bg-orange light">音乐</view>
-        <view class="cu-tag round bg-olive light">电影</view>
-        <view class="cu-tag round bg-blue light">旅行</view>
-      </view>
-
-
+     <view class="cu-item arrow">
+    <navigator class="content" url="../about/about" hover-class="none">
+    
+        <text class="icon-emojiflashfill text-pink"></text>
+        <text class="text-grey">关于All-in</text>
+        </navigator>
     </view>
     <view class="cu-item">
       <view class="content padding-tb-sm">

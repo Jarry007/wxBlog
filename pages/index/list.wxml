@@ -1,11 +1,11 @@
 <view class='cu-custom' style="height:{{CustomBar}}px;" bindtap='totop'>
-  <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+  <view class="cu-bar fixed bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
     <view class='content' style='top:{{StatusBar}}px;'>主页</view>
   </view>
 </view>
-<swiper class="card-swiper round-dot {{news? '':'lazy_swiper'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+<swiper class="card-swiper round-dot " indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
   <swiper-item wx:for="{{news}}" wx:key  wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
-    <view class="bg-img shadow-blur " style="background-image:url(http://127.0.0.1:5000/static/{{new_.img}})" bindtap='more' data-id='{{new_.id}}'><view class='padding-xl text-white'>
+    <view class="bg-img shadow-blur " style="background-image:url(http://127.0.0.1:5000/static/{{new_.img}})" bindtap='more' data-id='{{index}}'><view class='padding-xl text-white'>
     <view class='padding-xs text-cut text-xl'>
       {{new_.tittle}}
     </view>
@@ -13,8 +13,8 @@
 
   </swiper-item>
 </swiper>
-<view class="cu-card case {{news?'':'lazy_post'}}">
-  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow" bindtap='show_more' data-id='{{index}}'>
+<view class="cu-card case {{posts? '':'lazy_swiper'}}" >
+  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow " bindtap='show_more' data-id='{{index}}'>
     <view class='image'>
       <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="widthFix"></image>
       <view class="cu-tag bg-blue">原创</view>

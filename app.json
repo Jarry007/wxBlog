@@ -8,7 +8,10 @@
     "pages/temp/like",
     "pages/login/login",
     "pages/temp/comment",
-    "pages/temp/notice"
+    "pages/temp/notice",
+    "pages/about/about",
+    "pages/about/thank"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

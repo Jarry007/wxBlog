@@ -1,10 +1,10 @@
 // pages/index/list.js
 const app =getApp() 
 var time = require('../../utils/util.js')
-
+var router = require('../index/router.js');
 Page({
     data: {
-        posts:[],
+        posts:'',
         cardCur:0,
         news :'',
         page :1,
@@ -13,19 +13,15 @@ Page({
         first_tap:''
     },
     onLoad: function (options) {
-        
-    
-        if (app.globalData.new_ != []) {
-            console.log('先于onlaunch' + app.globalData.new_)
-        }
-        else {
-            app.newsReadyCallback = res => {
-                this.setData({
-                    news: app.globalData.new_
-                })
+        router.route_request('mp/new').catch(res=>{
+            let news = res.news;
+            for (var i = 0; i < news.length; i++) {
+                news[i]['time'] = time.formatTime(new Date(news[i]['time'].replace('GMT', '')))
             }
-
-        }
+            this.setData({
+                news:news
+            })
+        })
         this.pagination(this.data.page)
     },
     onReady: function () {
@@ -34,7 +30,7 @@ Page({
     more:function(event){
         
         let postId = event.currentTarget.dataset.id
-        console.log(postId)
+        wx.setStorageSync('newsdata', this.data.news[postId])
         wx.navigateTo({
             url: 'more?id='+postId,
         })
