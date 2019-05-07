@@ -19,37 +19,48 @@ Page({
     },
 
     onLoad: function(options) {
-        if (options.id) {
-            var posts = wx.getStorageSync('newsdata');
-        } else {
-            var posts = wx.getStorageSync('postsdata');
-        }
-        let view_count = posts['view_count'],
-            comments = posts.new_comment.comments,
-            like = posts.likes,
-            stroage = wx.getStorageSync('final_data');
-        if (stroage) {
-            let wx_uid = md_.md5(stroage['openId']);
-            for (var i = 0; i < like.length; i++) {
-                if (like[i].user_id == wx_uid) {
-                    var liked = true
-                }
+            let num =  options.id,
+            info = {
+                num: num
             }
-        } else {
-            var liked = false
-        }
-        view_count++;
-        this.setData({
-            post: posts,
-            like_count: posts['like_count'],
-            comment_count: posts['comment'],
-            view_count: view_count,
-            comments: comments,
-            liked: liked
-        })
-        console.log(this.data.post)
-        let parse = this.data.post.body_html;
-        WxParse.wxParse('wxshow', 'html', parse, this, 20);
+            console.log(num)
+            router.route_request('mp/refresh', info).catch(res => {
+
+                let posts = res;
+                console.log(posts)
+                let view_count = posts['view_count'],
+                    comments = posts.new_comment.comments,
+                    like = posts.likes,
+                    stroage = wx.getStorageSync('final_data');
+                if (stroage) {
+                    let wx_uid = md_.md5(stroage['openId']);
+                    for (var i = 0; i < like.length; i++) {
+                        if (like[i].user_id == wx_uid) {
+                            var liked = true
+                        }
+                    }
+                    console.log(comments)
+                    for (var j = 0; j<comments.length;j++){
+                        if (comments[j].user_id == wx_uid){
+                            comments[j].liked = 'isLike'
+                        }
+                    }
+                } else {
+                    var liked = false
+                }
+                view_count++;
+                this.setData({
+                    post: posts,
+                    like_count: posts['like_count'],
+                    comment_count: posts['comment'],
+                    view_count: view_count,
+                    comments: comments,
+                    liked: liked
+                })
+                let parse = this.data.post.body_html;
+                WxParse.wxParse('wxshow', 'html', parse, this, 20);
+            })
+  
     },
     like(e) {
         //  like_.like()
@@ -115,6 +126,10 @@ Page({
                     comments:res.new_comment.comments
                 })
             })
+            wx.showToast({
+                title: '评论成功',
+                duration:1500
+            })
             this.tobottom()
             
 
@@ -126,7 +141,6 @@ Page({
     },
     onPullDownRefresh() {
         wx.showNavigationBarLoading()
-        console.log('到顶了')
         wx.showLoading({
             title: '更新中...',
             icon: 'loading',
@@ -135,13 +149,15 @@ Page({
         let info = {
             num: this.data.post.id
         }
-        router.route_request('mp/refresh', info).catch(c => {
+        router.route_request('mp/refresh', info).catch(res => {
+            let posts = res;
             this.setData({
-                post: c
+                post: posts,
+                like_count: posts['like_count'],
+                comment_count: posts['comment'],
+                view_count: posts['view_count']
             })
         })
-        
-
     },
     zan:function(e){
         let stroage = wx.getStorageSync('final_data'),
@@ -196,5 +212,29 @@ Page({
                 scrollTop: rect.bottom
             })
         }).exec()
+    },
+    reply(e){
+        let comment_id = e.currentTarget.dataset.id
+        wx.navigateTo({
+            url: 'reply?id='+comment_id,
+        })
+        
+    },
+    onShareAppMessage: function (res) {
+        if (res.from == 'button') {
+            // 来自页面内转发按钮
+            console.log(res.target)
+        }
+        return {
+            title:this.data.post.tittle ,
+            path: '/pages/more?id='+this.data.post.id,
+            success:res=>{
+                console.log('成功')
+            },
+            fail:err=>{
+                console.log('失败')
+            }
+        }
+
     }
 })

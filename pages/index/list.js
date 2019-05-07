@@ -22,24 +22,24 @@ Page({
                 news:news
             })
         })
-        this.pagination(this.data.page)
+        
     },
     onReady: function () {
+        let info ={
+            page : this.data.page
+        }
+        router.route_request('mp/posts',info).catch(res=>{
+            console.log(res.posts)
+            this.setData({
+                posts:res.posts
+            })
+        })
 
     },
     more:function(event){
-        
         let postId = event.currentTarget.dataset.id
-        wx.setStorageSync('newsdata', this.data.news[postId])
         wx.navigateTo({
             url: 'more?id='+postId,
-        })
-    },
-    show_more:function(event){
-        let postId = event.currentTarget.dataset.id
-        wx.setStorageSync('postsdata', this.data.posts[postId])
-        wx.navigateTo({
-            url: 'more?num='+postId,
         })
     },
     onShow: function () {
@@ -53,58 +53,25 @@ Page({
     
 
  
-    pagination(page){
-        wx.request({
-            url: `${app.globalData.url}mp/posts`,
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            data: {
-                page: JSON.stringify(page) //把object转化为json数据
-            },
-            method: 'POST',
-            success: u=> {
-                let items = u.data.posts,
-                posts = this.data.posts
-                if(items.length != 0){
-                    for (var i = 0; i < items.length; i++) {
-                        items[i]['time'] = time.formatTime(new Date(items[i]['time'].replace('GMT', '')))
-                    }
-                    if(page==1){
-                        this.setData({
-                            posts:items
-                        })
-                    }
-                    else{
-                    this.setData({
-                        posts: posts.concat(items)
-                    })
-                    }
-                }
-                else{
-                    wx.showToast({
-                        title: '全部加载完毕...',
-                        icon: 'success',
-                        duration: 1000
-                    })
-                } 
-               
-            },
-            fail: f=>{
-                console.log(f)
-            },
-        })
-    
-    },
+  
     onReachBottom: function () {
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
             duration: 1000
         })
-        let page = this.data.page +1;
+        let page = this.data.page +1,
+        posts = this.data.posts,
+        info={
+            page:page
+        }
         console.log('page'+page)
-        this.pagination(page)
+        router.route_request('mp/posts',info).catch(res=>{
+            console.log(res.posts)
+            this.setData({
+                posts:posts.concat(res.posts)
+            })
+        })
         this.setData({
             page:page
         })

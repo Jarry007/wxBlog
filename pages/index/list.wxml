@@ -1,40 +1,44 @@
 <view class='cu-custom' style="height:{{CustomBar}}px;" bindtap='totop'>
-  <view class="cu-bar fixed bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <view class='content' style='top:{{StatusBar}}px;'>主页</view>
-  </view>
+    <view class="cu-bar fixed bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <view class='content' style='top:{{StatusBar}}px;'>主页</view>
+    </view>
 </view>
-<swiper class="card-swiper round-dot " indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-  <swiper-item wx:for="{{news}}" wx:key  wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
-    <view class="bg-img shadow-blur " style="background-image:url(http://127.0.0.1:5000/static/{{new_.img}})" bindtap='more' data-id='{{index}}'><view class='padding-xl text-white'>
-    <view class='padding-xs text-cut text-xl'>
-      {{new_.tittle}}
-    </view>
-  </view></view>
-
-  </swiper-item>
-</swiper>
-<view class="cu-card case {{posts? '':'lazy_swiper'}}" >
-  <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow " bindtap='show_more' data-id='{{index}}'>
-    <view class='image'>
-      <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="widthFix"></image>
-      <view class="cu-tag bg-blue">原创</view>
-      <view class='cu-bar bg-shadeBottom'><text class="text-cut">{{item.tittle}}</text></view>
-    </view>
-    <view class="cu-list menu menu-avatar">
-      <view class="cu-item">
-        <view class="cu-avatar round lg" style="background-image:url({{item.link_.avatar}});"></view>
-        <view class='content flex-sub'>
-          <view class='text-grey'>{{item.link_.username}}</view>
-          <view class='text-gray text-sm flex justify-between'>
-            {{item.time }}
-            <view class="text-gray text-sm">
-              <text class="icon-attentionfill"></text> {{item.view_count}}
-              <text class="icon-appreciatefill"></text> {{item.like_count}}
-              <text class="icon-messagefill"></text> {{item.comment}}
+    <swiper class="card-swiper round-dot {{news? '':'page'}} " indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+        <swiper-item wx:for="{{news}}" wx:key wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
+            <view class="bg-img shadow-blur " style="background-image:url(http://127.0.0.1:5000/static/{{new_.img}})" bindtap='more' data-id='{{new_.id}}'>
+                <view class='padding-xl text-white'>
+                    <view class='padding-xs text-cut text-xl'>
+                        {{new_.tittle}}
+                    </view>
+                </view>
             </view>
-          </view>
+        </swiper-item>
+    </swiper>
+    <view class="cu-card case {{posts? '':'loading'}}">
+        <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow " bindtap='more' data-id='{{item.id}}'>
+            <view class='image'>
+                <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="widthFix"></image>
+                <view class="cu-tag bg-blue">原创</view>
+                <view class='cu-bar bg-shadeBottom'>
+                    <text class="text-cut">{{item.tittle}}</text>
+                </view>
+            </view>
+            <view class="cu-list menu menu-avatar">
+                <view class="cu-item">
+                    <view class="cu-avatar round lg" style="background-image:url(https://www.gravatar.com/avatar/dff99b35a2b0d44e97f7aad39408f842?s=180&d=monsterid&r=g);">
+                    <image class='cu-avatar round lg' src='{{item.link_.avatar}}'></image></view>
+                    <view class='content flex-sub'>
+                        <view class='text-grey'>{{item.link_.username}}</view>
+                        <view class='text-gray text-sm flex justify-between'>
+                            {{item.time }}
+                            <view class="text-gray text-sm">
+                                <text class="icon-attentionfill"></text> {{item.view_count}}
+                                <text class="icon-appreciatefill"></text> {{item.like_count}}
+                                <text class="icon-messagefill"></text> {{item.comment}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
         </view>
-      </view>
     </view>
-  </view>
-</view>

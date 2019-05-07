@@ -30,6 +30,13 @@ Page({
         }
 
     },
+    todetail(e){
+        let id = e.currentTarget.dataset.id;
+        wx.navigateTo({
+            url: '../index/more?id='+id,
+        })
+
+    }
 
 
 })

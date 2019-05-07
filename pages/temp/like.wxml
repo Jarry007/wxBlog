@@ -11,7 +11,7 @@
     <view class="bg-gradual-red content shadow-blur" data-id='{{item.article_id}}' bindtap='todetail'>
       <view class="cu-capsule radius">
         <view class="cu-tag bg-grey">{{item.time}}</view>
-        <view class="cu-tag bg-orange">点赞</view>
+        <view class="cu-tag bg-orange">喜欢了</view>
       </view>
 
       <view class="cu-card article {{isCard?'no-card':''}}">

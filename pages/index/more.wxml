@@ -8,8 +8,7 @@
         <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}</view>
     </view>
 </view>
-<view class="cu-card dynamic {{isCard?'no-card':''}}">
-
+<view class="cu-card dynamic">
         <view class="cu-list menu menu-avatar">
             <view class="cu-item">
                 <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
@@ -47,10 +46,10 @@
                     <view class='text-black text-df'>
                         {{item.body}}
                     </view>
-                    <view class='bg-gray padding-sm radius margin-top-sm  text-sm' wx:for="{{item.replies.r}}" wx:key wx:for-item='reply' >
+                    <view class='bg-gray padding-sm radius margin-top-sm  text-sm' wx:for="{{item.replies.r}}" wx:key wx:for-item='reply'>
                         <view class="flex">
                         
-                            <view class="text-blod text-blue">{{reply._link.username}}</view> :
+                            <view class="text-blod text-blue">{{reply.user_name}}</view> :
                             
                             <view class='flex-sub text-grey'>{{reply.body}}</view>
                         </view>
@@ -58,8 +57,10 @@
                     <view class='margin-top-sm flex justify-between'>
                         <view class='text-gray text-df'>{{item.time}}</view>
                         <view>
-                            <text class="icon-appreciate{{!isZan?'':'fill'}} text-{{!isZan?'gray':'red'}}" checked='{{zan}}' catchtap='zan' data-id='{{item.id}}'></text>
-                            <text class="icon-messagefill text-gray margin-left-sm"></text>
+                            <text wx:if='{{item.liked}}' class="icon-appreciatefill text-red" checked='{{zan}}' catchtap='zan' data-id='{{item.id}}'></text>
+                            <text wx:else class="icon-appreciate text-gary" checked='{{zan}}' catchtap='zan' data-id='{{item.id}}'></text>
+                            <text class="icon-messagefill text-gray margin-left-sm" 
+                            catchtap='reply' data-id='{{item.id}}'></text>
                         </view>
                     </view>
                 </view>

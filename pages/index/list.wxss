@@ -1,6 +1,17 @@
 /* pages/index/list.wxss */
-.lazy_swiper{
-    background-image:url(https://image.weilanwl.com/gif/loading-white.gif);                 
-    height: 50vh; 
+
+.page{
+    background-image:url(https://image.weilanwl.com/gif/loading-white.gif);     
+    background-size:contain;
+	background-repeat:no-repeat; 
+    background-position: 50% 50%;           
+    
+}
+.loading{
+    background-image:url(https://image.weilanwl.com/gif/loading-white.gif);     
+    background-size:contain;
+	background-repeat:no-repeat; 
+    background-position: 50% 50%; 
+    height: 50vh;
 }
  

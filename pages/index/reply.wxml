@@ -1,0 +1,46 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+    </view>
+</view>
+
+<view class="cu-card dynamic">
+    <view class="cu-list menu menu-avatar">
+        <view class="cu-item">
+            <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
+            <view class='content flex-sub'>
+                <view class='text-blod'>{{post.tittle}}</view>
+                <view class='text-gray text-sm flex justify-between'>
+                    <text class="icon-people">{{post.link_.username}}</text>
+                    <text class="icon-time">{{post.time}}</text>
+                    <text class="icon-attention">{{view_count}}</text>
+                    <text class="icon-appreciate{{liked?'fill':''}} text-{{liked?'red':'gray'}}"> {{like_count}}</text>
+                    <text class="icon-message"> {{post.comment}}</text>
+                </view>
+            </view>
+        </view>
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            <view class="cu-capsule radius">
+                <view class='cu-tag bg-mauve'>回复</view>
+                <view class='cu-tag line-red'>{{post.comment}}</view>
+            </view>
+        </view>
+
+    </view>
+</view>
+
+<form bindsubmit='comment'>
+    <view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
+        <input class="solid-bottom" maxlength="300" cursor-spacing="10" name='comment'></input>
+        <button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
+        <view class="action" bindtap='collection' name='collection'>
+            <text class="icon-{{collected?'favorfill text-yellow':'favor text-gery'}}"></text>
+        </view>
+        <view class="action" bindtap='like' name='like'>
+            <text class="icon-{{liked?'likefill text-red':'like text-gery'}}"></text>
+        </view>
+    </view>
+</form>

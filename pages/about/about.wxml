@@ -11,8 +11,8 @@
   <view class=''>
     <view>Hi！您好</view>
     <view class='margin-top-sm'>取这个名字是希望对待任何事情都要全身心地投入进去，不留遗憾。</view>
-    <view class='margin-top-sm'>该项目是我的博客（blogai.cn）的微信小程序版本，后台使用的是flask框架。匆忙中赶出来的，作为一个新手，</view>
-    <view class='margin-top-sm'>该项目你可以用到除组件库小程序的任何项目。作者我也是花了时间和精力的，我不希望你拷贝一份，做一些修改发布就变成了一个独立的项目，当然！扩展再发布是可以的，但前提是注明一下我这个原作者٩(๑❛ᴗ❛๑)۶</view>
+    <view class='margin-top-sm'>该项目是我的博客（blogai.cn）的微信小程序版本，后台使用的是flask框架。匆忙中赶出来的，作为一个新手，存在很多不足。如果您在使用中遇到了任何问题，欢迎反馈。</view>
     <view class='margin-top-sm'>更多功能敬请期待！</view>
+    <view class='margin-top-sm'>---2019/5/6---</view>
   </view>
 </view>
