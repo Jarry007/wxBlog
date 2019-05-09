@@ -7,11 +7,10 @@
 </view>
 
 <view class='margin-lg bg-white padding-lg radius shadow-lg'>
-  <view class='text-center margin-bottom text-lg  text-grey'>关于ALL-in博客</view>
+  <view class='text-center margin-bottom text-lg  text-grey'>更多功能</view>
   <view class=''>
-    <view>Hi！您好</view>
-    <view class='margin-top-sm'>取这个名字是希望对待任何事情都要全身心地投入进去，不留遗憾。</view>
-    <view class='margin-top-sm'>该项目是我的博客（blogai.cn）的微信小程序版本，后台使用的是flask框架。匆忙中赶出来的，作为一个新手，存在很多不足。如果您在使用中遇到了任何问题，欢迎反馈。</view>
+    <view class='margin-top-sm'>目前web端和小程序端还不能实现账号同步，您可以访问 'blogai.cn' 使用完整版的博客，web端可以支持博客文章的撰写，用户的关注等。</view>
+    <view class='margin-top-sm'>如果您觉得不错，请移步github给作者点个赞吧。谢谢！</view>
     <view class='margin-top-sm'>更多功能敬请期待！</view>
     <view class='margin-top-sm'>---2019/5/6---</view>
   </view>

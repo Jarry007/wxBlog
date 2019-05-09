@@ -57,10 +57,11 @@
                     <view class='margin-top-sm flex justify-between'>
                         <view class='text-gray text-df'>{{item.time}}</view>
                         <view>
-                            <text wx:if='{{item.liked}}' class="icon-appreciatefill text-red" checked='{{zan}}' catchtap='zan' data-id='{{item.id}}'></text>
-                            <text wx:else class="icon-appreciate text-gary" checked='{{zan}}' catchtap='zan' data-id='{{item.id}}'></text>
+                            <text  class="icon-appreciatefill text-{{item.liked?'red':'gray'}}"  catchtap='zan' data-id='{{item.id}}' data-index='{{index}}'>
+                            <text wx:if='{{item.likes>0}}'>{{item.likes}}</text>
+                            </text>
                             <text class="icon-messagefill text-gray margin-left-sm" 
-                            catchtap='reply' data-id='{{item.id}}'></text>
+                            catchtap='reply' data-id='{{item.id}}' data-index='{{index}}'></text>
                         </view>
                     </view>
                 </view>
@@ -76,7 +77,7 @@
   <input class="solid-bottom" maxlength="300" cursor-spacing="10" name='comment'></input>
 <button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
     <view class="action" bindtap='collection' name='collection'>
-    <text class="icon-{{collected?'favorfill text-yellow':'favor text-gery'}}"></text>
+    <text class="icon-{{iscollec?'favorfill text-yellow':'favor text-gery'}}"></text>
   </view>
     <view class="action" bindtap='like' name='like'>
     <text class="icon-{{liked?'likefill text-red':'like text-gery'}}"></text>

@@ -1,98 +1,88 @@
 <view class="cu-custom" style="height:{{CustomBar}}px;">
     <view class="cu-bar fixed bg-gradual-purple" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-         <view class='content' style='top:{{StatusBar}}px;'>我的</view>
+        <view class='content' style='top:{{StatusBar}}px;'>我的</view>
     </view>
 </view>
 <view class="margin-xl padding-lg bg-white radius shadow-lg">
-  <view class="flex justify-center">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
-    <block wx:else>
-      <view class='text-center'>
-        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
-        <view class="padding">{{userInfo.nickName}}</view>
-      </view>
-    </block>
-  </view>
+    <view class="flex justify-center">
+        <button wx:if="{{!hasUserInfo && canIUse}}" 
+  open-type="getUserInfo"
+  bindgetuserinfo="bindGetUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+        <block wx:else>
+            <view class='text-center'>
+                <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+                <view class="padding">{{userInfo.nickName}}</view>
+            </view>
+        </block>
+    </view>
 </view>
 <view class="cu-list grid col-4 no-border ">
 
-  <view class="cu-item" >
-   <navigator class="content" url="/pages/temp/like" hover-class="none">
-    <view class='icon-likefill text-red'>
+    <view class="cu-item">
+        <navigator class="content" url="/pages/temp/like" hover-class="none">
+            <view class='icon-likefill text-red'>
+            </view>
+            <text>我的喜欢</text>
+        </navigator>
     </view>
-    <text>我的喜欢</text>
-    </navigator>
-  </view>
-  <view class="cu-item" >
-  <navigator class="content" url="/pages/temp/comment" hover-class="none">
-    <view class='icon-commentfill text-purple'>
+    <view class="cu-item">
+        <navigator class="content" url="/pages/temp/comment" hover-class="none">
+            <view class='icon-commentfill text-purple'>
+            </view>
+            <text>我的评论</text>
+        </navigator>
     </view>
-    <text>我的评论</text>
-    </navigator>
-  </view>
-  <view class="cu-item" >
-    <view class='icon-favorfill text-blue'>
+    <view class="cu-item">
+        <navigator class="content" url="/pages/temp/collection" hover-class="none">
+            <view class='icon-favorfill text-blue'>
+            </view>
+            <text>我的收藏</text>
+        </navigator>
     </view>
-    <text>我的收藏</text>
-  </view>
-  <view class="cu-item" >
-  <navigator class="content" url="/pages/temp/flash" hover-class="none">
-    <view class='icon-noticefill text-green text-shadow'>
-     <view class="cu-tag badge"  wx:if='{{isnew}}'>
-      </view>
+    <view class="cu-item">
+        <navigator class="content" url="/pages/temp/flash" hover-class="none">
+            <view class='icon-noticefill text-green text-shadow'>
+                <view class="cu-tag badge" wx:if='{{isnew}}'>
+                </view>
+            </view>
+            <text>我的消息</text>
+        </navigator>
     </view>
-    <text>我的消息</text>
-     </navigator>
-  </view>
- 
 </view>
 
+<view class="cu-bar bg-white solid-bottom margin-top">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text> 关于
+    </view>
+</view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="cu-item arrow">
-     <navigator class="content" url="/pages/temp/flash" hover-class="none">
-        <text class="icon-emojiflashfill text-pink"></text>
-        <text class="text-grey">我的消息</text>
-        </navigator>
+        <button class="cu-btn content" open-type="contact">
+            <text class="icon-btn text-yellow"></text>
+            <text class="text-grey">问题反馈</text>
+        </button>
     </view>
 
     <view class="cu-item arrow">
-      <button class="cu-btn content" open-type="contact">
-        <text class="icon-btn text-yellow"></text>
-        <text class="text-grey">联系我</text>
-      </button>
-    </view>
-    <view class="cu-item arrow">
-      <navigator class="content" hover-class="none" url="../list/list" open-type="redirect">
-        <text class="icon-discoverfill text-orange"></text>
-        <text class="text-grey">我的收藏</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-    <navigator class="content" url="/pages/temp/like" hover-class="none">
-    
-        <text class="icon-emojiflashfill text-pink"></text>
-        <text class="text-grey">我的赞</text>
+        <navigator class="content" url="../about/about" hover-class="none">
+            <text class="icon-more text-green"></text>
+            <text class="text-grey">更多功能</text>
         </navigator>
     </view>
-   <view class="cu-item arrow">
-      <navigator class="content" url="/pages/temp/comment" hover-class="none">
-        <text class="icon-btn text-green"></text>
-        <text class="text-grey">我的评论</text>
-      </navigator>
+    <view class="cu-item arrow">
+        <view class='content' bindtap='CopyLink' data-link='https://github.com/Jarry007'>
+            <text class='icon-github text-grey'></text>
+            <text class='text-grey'>GitHub</text>
+        </view>
     </view>
-     <view class="cu-item arrow">
-    <navigator class="content" url="../about/about" hover-class="none">
-    
-        <text class="icon-emojiflashfill text-pink"></text>
-        <text class="text-grey">关于All-in</text>
+    <view class="cu-item arrow">
+        <navigator class="content" url="../about/thank" hover-class="none">
+            <text class="icon-writefill text-pink"></text>
+            <text class="text-grey">特别感谢</text>
         </navigator>
     </view>
-  </view>
-
-
-
-
+</view>
 
 <view class="text-center margin-top">
-  <text class="text-grey text-xl">{{motto}}</text>
+    <text class="text-grey text-xl">{{motto}}</text>
 </view>

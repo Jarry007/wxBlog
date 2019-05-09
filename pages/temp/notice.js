@@ -3,9 +3,9 @@ const app = getApp()
 var router = require('../index/router.js')
 Page({
     data: {
-        notice:''
+        notice: ''
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
         let stroage = wx.getStorageSync('final_data')
         console.log(stroage)
         if (stroage) {
@@ -18,8 +18,7 @@ Page({
                     notice: res.all
                 })
             })
-        }
-        else {
+        } else {
             wx.navigateTo({
                 url: '../login/login',
             })

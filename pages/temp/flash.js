@@ -1,140 +1,108 @@
 // pages/index/flash.js
 const app = getApp()
 var router = require('../index/router.js')
+var timeago = require('../../utils/timeago.js')
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-      StatusBar: app.globalData.StatusBar,
-      CustomBar: app.globalData.CustomBar,
-      notice: '',
-      TabCur: 0,
-      scrollLeft: 0,
-      page:1,
-      tab2:false,
-      route:'mp/notice'
+    data: {
+        StatusBar: app.globalData.StatusBar,
+        CustomBar: app.globalData.CustomBar,
+        notice: '',
+        TabCur: 0,
+        scrollLeft:0,
+        page: 1,
+        tab2: false,
+        route: 'mp/notice',
+        reply:'',
+        like:''
 
-  },
-    tabSelect(e) {
-        console.log(e);
+    },
+    tabselect(e){
+        let id = e.currentTarget.dataset.id;
+        if (id==0){
+            var route = 'mp/notice'
+        }else{
+            var route = 'mp/notice_reply';
+        }
+        let stroage = wx.getStorageSync('final_data');
+        let info = {
+            openId: stroage.openId,
+            page: 1
+        };
+        this.pagenation(route, info)
         this.setData({
-            TabCur: e.currentTarget.dataset.id,
-            scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+            TabCur: id,
+            scrollLeft: (id - 1) * 60,
+            route:route,
+            page:1
         })
     },
-    onLoad: function (options) {
+    onLoad: function(options) {
         let stroage = wx.getStorageSync('final_data'),
-        route = this.data.route,
-        page = this.data.page;
+            route = this.data.route,
+            page = this.data.page;
         if (stroage) {
             let info = {
                 openId: stroage.openId,
-                page :page
+                page: page
             };
-          this.pagenation(route,info)
-        }
-        else {
+            this.pagenation(route, info)
+        } else {
             wx.navigateTo({
                 url: '../login/login',
             })
         }
     },
-  // ListTouch触摸开始
-  ListTouchStart(e) {
-    this.setData({
-      ListTouchStart: e.touches[0].pageX
-    })
-  },
 
-  // ListTouch计算方向
-  ListTouchMove(e) {
-    this.setData({
-      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
+    pagenation(route, info) {
+        router.route_request(route, info).catch(res => {
+            var data_ = res.all;
+              let page = this.data.page
+                let notice = this.data.notice;
+                console.log(data_)
+                for(var i =0;i<data_.length;i++){
+                    data_[i]['time'] = timeago.transDate(data_[i]['time'].replace('GMT', ''))
+                }
+                if (page == 1) {
+                    if (data_.length == 0) {
+                        wx.showToast({
+                            title: '加载完毕',
+                            icon: 'none'
+                        })
+                    }
+                    this.setData({
+                        notice: data_
+                    })
+                } else {
+                    if (data_.length == 0){
+                        wx.showToast({
+                            title: '加载完毕',
+                            icon:'none'
+                        })
+                    }
+                    this.setData({
+                        notice: notice.concat(data_)
+                    })
+                }
     })
-  },
-
-  // ListTouch计算滚动
-  ListTouchEnd(e) {
-    if (this.data.ListTouchDirection == 'left') {
-      this.setData({
-        modalName: e.currentTarget.dataset.target
-      })
-    } else {
-      this.setData({
-        modalName: null
-      })
-    }
-    this.setData({
-      ListTouchDirection: null
-    })
-  },
-  pagenation(route,info){
-      router.route_request(route, info).catch(res => {
-          let data_ = res.all,
-          page = this.data.page
-          if (data_.length != 0 && this){
-          let notice = this.data.notice;
-          if (page==1){
-          this.setData({
-              notice: res.all
-          })
-          }else{
-              this.setData({
-                  notice:notice.concat(res.all)
-              })
-          }
-          }else{
-              wx.showToast({
-                  title: '全部加载完毕...',
-                  icon: 'success',
-                  duration: 1000
-              })
-          }
-      })
-  }
-  ,
-    onReachBottom: function () {
+},
+    onReachBottom: function() {
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
             duration: 1000
         })
         let page = this.data.page + 1,
-        route = this.data.route,
-         stroage = wx.getStorageSync('final_data');
-         let info = {
-             openId: stroage.openId,
-             page: page
-         }
-         this.pagenation(info)
+            route = this.data.route,
+            stroage = wx.getStorageSync('final_data');
         this.setData({
             page: page
         })
-
-
-    },
-  toDelect(e){
-    console.log('删除:'+e.detail)
-  },
-    tabSelect(e){
-        let tabId = e.currentTarget.dataset.id
-        if (tabId==1){
-            let stroage = wx.getStorageSync('final_data'),
-                page = 1,
-                info = {
-                    openId: stroage.openId,
-                    page: page
-                };
-                this.setData({
-                    page:page,
-                    tab2:true,
-                    route:'mp/notice_reply'
-                })
-                this.pagenation('mp/notice_reply', info)
-        }else{
-
+        let info = {
+            openId: stroage.openId,
+            page: page
         }
+        this.pagenation(route,info)
+        
     }
 })

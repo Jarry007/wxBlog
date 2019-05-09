@@ -1,2 +1,22 @@
-<!--pages/about/thank.wxml-->
-<text>pages/about/thank.wxml</text>
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 返回
+    </navigator>
+  </view>
+</view>
+
+<view class='margin-lg bg-white padding-lg radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>特别感谢</view>
+    <view class='margin-top-sm'>"ALL-in"，取这个名字是希望对待任何事情都要全力以赴，不留遗憾。</view>
+    <view class='margin-top-sm'>该项目是我的博客（blogai.cn）的微信小程序版本，后台使用的是python的flask框架。匆忙之中赶出来的，作为一个新手，存在很多不足。如果您在使用中遇到了任何问题，欢迎反馈。</view>
+    <view class='margin-top-sm'>  另外该小程序的开发使用到了很多优秀的开源组件和插件，特在此表示感谢</view>
+      <view class='text-center'>
+    <view class='margin-top-sm'>- ColorUI 组件库</view>
+    <view class='margin-top-sm'>- wxParse</view>
+    <view class='margin-top-sm'>- Prism</view>
+    <view class='margin-top-sm'>- 日出一点一</view>
+  </view>
+   
+    
+</view>

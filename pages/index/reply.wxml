@@ -9,36 +9,50 @@
 <view class="cu-card dynamic">
     <view class="cu-list menu menu-avatar">
         <view class="cu-item">
-            <view class="cu-avatar round lg" style="background-image:url({{post.link_.avatar}});"></view>
+            <view class="cu-avatar round lg" style="background-image:url({{comments._link.avatar}});"></view>
             <view class='content flex-sub'>
-                <view class='text-blod'>{{post.tittle}}</view>
                 <view class='text-gray text-sm flex justify-between'>
-                    <text class="icon-people">{{post.link_.username}}</text>
-                    <text class="icon-time">{{post.time}}</text>
-                    <text class="icon-attention">{{view_count}}</text>
-                    <text class="icon-appreciate{{liked?'fill':''}} text-{{liked?'red':'gray'}}"> {{like_count}}</text>
-                    <text class="icon-message"> {{post.comment}}</text>
+                    <text class="icon-people">{{comments._link.username}}</text>
+                    <text class="icon-time">{{comments.time}}</text>
+                    <text class="icon-appreciate{{comments.liked?'fill':''}} text-{{comments.liked?'red':'gray'}}"> {{comments.likes}}</text>
+                    
                 </view>
             </view>
         </view>
-        <view class='action'>
+        <view class='padding'>{{comments.body}}</view>
+        <view class='action padding'>
             <text class='icon-titles text-orange '></text>
             <view class="cu-capsule radius">
                 <view class='cu-tag bg-mauve'>回复</view>
-                <view class='cu-tag line-red'>{{post.comment}}</view>
+                <view class='cu-tag line-red'>{{comments.reply_num}}</view>
+            </view>
+        </view>
+
+       <view class="cu-list menu menu-avatar comment solids-top">
+            <view class="cu-item" wx:for="{{comments.replies.r}}" wx:key='{{item}}' >
+            
+                <view  class="cu-avatar round" style="background-image:url({{item.user_avatar}});"></view>
+                <view class='content'>
+                     <view class="text-blod">{{item.user_name}}</view> 
+                    <view class='text-black text-df'>
+                        {{item.body}}
+                    </view>
+                    <view class='margin-top-sm flex justify-between'>
+                        <view class='text-gray text-df'>{{item.time}}</view>
+                        <view>
+                        </view>
+                    </view>
+                </view>
             </view>
         </view>
 
     </view>
 </view>
 
-<form bindsubmit='comment'>
+<form bindsubmit='reply'>
     <view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
-        <input class="solid-bottom" maxlength="300" cursor-spacing="10" name='comment'></input>
-        <button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
-        <view class="action" bindtap='collection' name='collection'>
-            <text class="icon-{{collected?'favorfill text-yellow':'favor text-gery'}}"></text>
-        </view>
+        <input class="solid-bottom" maxlength="300" cursor-spacing="10" name='reply'></input>
+        <button class='cu-btn round bg-mauve shadow' form-type='submit'>回复</button>
         <view class="action" bindtap='like' name='like'>
             <text class="icon-{{liked?'likefill text-red':'like text-gery'}}"></text>
         </view>

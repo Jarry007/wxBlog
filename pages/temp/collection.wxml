@@ -1,0 +1,31 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+        <view class='content' style='top:{{StatusBar}}px;'>我的收藏</view>
+    </view>
+</view>
+<view class="cu-timeline">
+
+   <view  class="cu-item text-green" wx:for='{{collection}}' wx:key wx:for-item='item'>
+    <view class="bg-gradual-green content shadow-blur" data-id='{{item.id}}' bindtap='todetail'>
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-orange">收藏</view>
+      </view>
+
+      <view class="cu-card article {{isCard?'no-card':''}}">
+        <view class="cu-item shadow">
+          <view class="content">
+            <view class="desc">
+              <view class="text-content"> {{item.tittle}}</view>
+            </view>
+            <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="aspectFill"></image> 
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+    
+
+</view>

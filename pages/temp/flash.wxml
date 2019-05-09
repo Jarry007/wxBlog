@@ -6,42 +6,43 @@
     </view>
 </view>
 <scroll-view scroll-x class="bg-white nav">
-  <view class='flex text-center'>
-    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{2}}" wx:key bindtap='tabSelect' data-id="{{index}}">
-      Tab{{index}}
+    <view class='flex text-center'>
+        <view class="cu-item flex-sub {{0==TabCur?'text-orange cur':''}}"  bindtap='tabselect' data-id="0">
+            点赞
+        </view>
+        <view class="cu-item flex-sub {{1==TabCur?'text-orange cur':''}}"  bindtap='tabselect' data-id="1">
+            回复
+        </view>
     </view>
-  </view>
 </scroll-view>
 <view class="cu-bar bg-white solid-bottom}}">
-<view class='action'>
-    <text class='icon-titles text-orange '></text><view class="cu-capsule radius">
-    
-    <view class='cu-tag bg-red' wx:if='{{tab2}}'>收到的回复</view>
-    <block wx:else>
-    <view class='cu-tag bg-red'>收到的赞</view>
-    </block>
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        <view class="cu-capsule radius">
+
+            <view class='cu-tag bg-red' wx:if='{{TabCur==1}}'>收到的回复</view>
+            <block wx:else>
+                <view class='cu-tag bg-red'>收到的赞</view>
+            </block>
+        </view>
     </view>
-  </view>
-  </view>
+</view>
+
 <view class="cu-list menu-avatar message">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{notice}}" wx:key wx:for-item='items' bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
-      <view class="cu-avatar round lg" style="background-image:url({{items.user_avatar}});"></view>
-      <view class="content">
-        <view class="text-grey" wx:if='{{tab2}}'>{{items.user_name}} 回复了您的评论</view>
-        <block wx:else>
-        <view class="text-grey">{{items.user_name}} 点赞了您的评论</view>
-        </block>
-        <view class="text-gray text-sm text-cut">
-          <text class="icon-comment text-purple"></text> {{items.comment_body}}</view>
-      </view>
-      <view class="action">
-            <view class="cu-tag round bg-red sm" wx:if='{{items.new}}' >
-      </view>
-        <view class="text-grey text-xs">22:20</view>
-        
-      </view>
-      <view class="move">
-        <view class="bg-red" bindtap='toDelect'>删除</view>
-      </view>
+    <view class="cu-item " wx:for="{{notice}}" wx:key wx:for-item='items' bindtouchend="ListTouchEnd" >
+        <view class="cu-avatar round lg" style="background-image:url({{items.user_avatar}});"></view>
+        <view class="content">
+            <view class="text-grey" wx:if='{{TabCur==1}}'>{{items.user_name}} 回复了您的评论</view>
+            <block wx:else>
+                <view class="text-grey">{{items.user_name}} 点赞了您的评论</view>
+            </block>
+            <view class="text-gray text-sm text-cut">
+                <text class="icon-comment text-purple"></text> {{items.comment_body}}</view>
+        </view>
+        <view class="action">
+            <view class="cu-tag round bg-red sm" wx:if='{{items.new}}'>
+            </view>
+            <view class="text-grey text-xs">{{items.time}}</view>
+        </view>
     </view>
-  </view>
+</view>

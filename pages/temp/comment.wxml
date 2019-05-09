@@ -1,33 +1,25 @@
 <view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <view class="cu-bar fixed bg-gradual-green" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
         <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
             <text class='icon-back'></text> 返回
         </navigator>
     </view>
 </view>
-<view class="cu-timeline">
 
-  <view  class="cu-item text-green" wx:for='{{comment}}' wx:key wx:for-item='item'>
-    <view class="bg-gradual-green content shadow-blur" data-id='{{item.article_id}}' bindtap='todetail'>
-      <view class="cu-capsule radius">
-        <view class="cu-tag bg-orange">{{item.time}}</view>
-        <view class="cu-tag line-orange">评论</view>
-      </view>
-
-      <view class="cu-card article {{isCard?'no-card':''}}">
-        <view class="cu-item shadow">
-          <view class="content">
-            <view class="desc">
-              <view class="text-content"> {{item.body}}</view>
+<view class="cu-list menu-avatar message">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{comment}}" wx:key wx:for-item='items' bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" bindtap='todetail' data-target="move-box-{{index}}" data-id='{{items.article_id}}'>
+        <view class="cu-avatar round lg" style="background-image:url({{items.avatar}});"></view>
+        <view class="content">
+            <view class="text-grey text-sm text-cut">评论：{{items.body}}</view>
+            <view class="text-gray text-sm">
+                <text class="icon-form text-purple"></text> {{items.article_title}}
+                </view>
+                </view>
+            <view class="action">
+                <view class="text-red text-xs">{{items.time}}</view>
             </view>
-            <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="aspectFill"></image>
-
-          </view>
+        <view class="move">
+            <view class="bg-red" data-num='{{items.id}}' catchtap='toDelect'>删除</view>
         </view>
-
-      </view>
     </view>
-  </view>
-   
-
 </view>

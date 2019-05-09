@@ -1,10 +1,14 @@
-// pages/login/login.js
+var router = require('../index/router.js');
+var time_ = require('../../utils/util.js');
+const app = getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        StatusBar: app.globalData.StatusBar,
+        CustomBar: app.globalData.CustomBar,
         canIUse: wx.canIUse('button.open-type.getUserInfo')
 
     },
@@ -12,7 +16,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad: function(options) {
         wx.getSetting({
             success(res) {
                 if (res.authSetting['scope.userInfo']) {
@@ -33,7 +37,6 @@ Page({
         console.log(e.detail.userInfo)
         wx.login({
             success: res => {
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 if (res.code) {
                     console.log(res.code)
                     wx.getUserInfo({
@@ -44,24 +47,12 @@ Page({
                                 code: res.code,
                                 appid: accountInfo.miniProgram.appId
                             }
-                            wx.request({
-                                url: 'http://127.0.0.1:5000/mp/login',
-                                header: {
-                                    'content-type': 'application/x-www-form-urlencoded'
-                                },
-                                data: {
-                                    info: JSON.stringify(info)
-                                },
-                                method: 'POST',
-                                success: function (u) {
-                                    wx.setStorageSync('final_data', u.data)
-                                    wx.navigateBack({
-                                        detal: 1
-                                    })
-                                },
-                                fail: function (f) {
-                                    console.log(f)
-                                },
+                            router.route_request('mp/login', info).catch(res=>{
+                                console.log()
+                                wx.setStorageSync('final_data', res)
+                                wx.navigateBack({
+                                    detal: 1
+                                })
                             })
                         },
                         fail: f => {
@@ -76,8 +67,7 @@ Page({
             }
         })
         wx.checkSession({
-            success() {
-            },
+            success() {},
             fail() {
                 wx.login() // 重新登录
             }

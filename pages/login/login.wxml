@@ -1,8 +1,25 @@
-
-<button
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+         <view class='content' style='top:{{StatusBar}}px;'>ALL-in</view>
+    </view>
+</view>
+<view class="margin-xl padding-lg bg-white radius shadow-lg">
+    <view class="flex justify-center">
+            <view class='text-center'>
+                <image class="cu-avatar xl round solids" src='/images/logo.png'></image>
+            </view>
+    </view>
+</view>
+<view class='padding-lg'>
+<button class='cu-btn bg-mauve lg padding flex flex-direction'
   wx:if="{{canIUse}}"
   open-type="getUserInfo"
   bindgetuserinfo="bindGetUserInfo"
 >
   登录
 </button>
+</view>
+
