@@ -1,12 +1,11 @@
-# wxBlog
-微信小程序博客
-## 3/28
-使用`wxParse`代码会挤在一行，使用`towxml`，html文本中无法代码高亮。
-原因是源码中没有为`<code>`标签里的内容进行`highlight.highlightAuto`高亮。
-解决办法可以参考`wxParse`，提取出`<code>`标签里的内容，然后传入`highlight.js`中。
+# 微信小程序
 
-## 4/4
-使用`wxParse`
-- 在 `wxDiscode.js` 下，更改 `function strMoreDiscode` 函数，把其中都删掉，写一条 `str=str.replace(/([^\r])\n/g, '$1')` 
-这样代码会换行；
-- 下载 `prism.js` 和 `prism.wxss` 创建 `highlight.js` 把 `<code>` 高亮转换
+这是一款后台为 `python-flask` 的博客微信小程序。使用了 `ColorUI` 组件库。
+
+可以实现 `代码高亮` `点赞` `收藏` `评论` `回复` `接收通知` 等功能。
+
+微信搜索 ： `jarry007` 进行体验。
+
+或者扫码体验：
+
+<img src="scan.jpg">
