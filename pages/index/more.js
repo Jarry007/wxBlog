@@ -145,8 +145,10 @@ Page({
             comments = posts.new_comment.comments,
             like = posts.likes,
             stroage = wx.getStorageSync('final_data');
+            console.log(stroage)
         if (stroage) {
             var wx_uid = md_.md5(stroage['openId']);
+        
             for (var i = 0; i < like.length; i++) {
                 like[i]['time'] = timeago.transDate(like[i]['time'].replace('GMT', ''))
                 if (like[i].user_id == wx_uid) {

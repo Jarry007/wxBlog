@@ -57,10 +57,10 @@
 </view>
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
     <view class="cu-item arrow">
-        <button class="cu-btn content" open-type="contact">
+        <navigator class="content" url="../about/issue" hover-class="none">
             <text class="icon-btn text-yellow"></text>
             <text class="text-grey">问题反馈</text>
-        </button>
+        </navigator>
     </view>
 
     <view class="cu-item arrow">

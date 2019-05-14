@@ -19,7 +19,7 @@ Page({
                     // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                     wx.getUserInfo({
                         success:res=> {
-                            console.log(res.userInfo)
+                            console.log({'res.userinfo':res.userInfo})
                             this.setData({
                                 userInfo:res.userInfo,
                                 hasUserInfo:true
@@ -48,7 +48,11 @@ Page({
                                 appid: accountInfo.miniProgram.appId
                             }
                             router.route_request('mp/login', info).catch(res => {
-                                console.log()
+                                console.log(res)
+                                this.setData({
+                                    userInfo:res,
+                                    hasUserInfo:true
+                                })
                                 wx.setStorageSync('final_data', res)
                                 wx.navigateBack({
                                     detal: 1
@@ -87,6 +91,7 @@ Page({
             }
             router.route_request('mp/all_notice', info).catch(res => {
                 wx.setStorageSync('notice', res)
+                console.log()
                 if (res.like[0]['new'] || res.reply[0]['new']) {
                     console.log('new')
                     this.setData({

@@ -20,7 +20,7 @@
             <view class="desc">
               <view class="text-content"> {{item.article_title}}</view>
             </view>
-            <image src="http://127.0.0.1:5000/static/{{item.img}}" mode="aspectFill"></image>
+            <image src="https://blogai.cn/static/{{item.img}}" mode="aspectFill"></image>
 
           </view>
         </view>

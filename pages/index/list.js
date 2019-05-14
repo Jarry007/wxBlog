@@ -71,9 +71,12 @@ Page({
             }
         console.log('page' + page)
         router.route_request('mp/posts', info).catch(res => {
-            console.log(res.posts)
+            let news = res.posts
+            for (var i = 0; i < news.length; i++) {
+                news[i]['time'] = time.formatTime(new Date(news[i]['time'].replace('GMT', '')))
+            }
             this.setData({
-                posts: posts.concat(res.posts)
+                posts: posts.concat(news)
             })
         })
         this.setData({

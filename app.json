@@ -11,7 +11,8 @@
     "pages/temp/notice",
     "pages/about/about",
     "pages/about/thank",
-    "pages/index/reply"
+    "pages/index/reply",
+    "pages/about/issue"
 
   ],
   "window": {

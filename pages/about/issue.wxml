@@ -1,0 +1,15 @@
+ <view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> 返回
+    </navigator>
+  </view>
+</view>
+  <form bindsubmit='issue'>
+ <view class="cu-form-group top" >
+    <view class='title'>反馈内容</view>
+    <textarea placeholder="多行文本输入框" maxlength="-1" placeholder-class='placeholder' name="issue"></textarea>
+    <button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
+  </view>
+  
+  </form>
