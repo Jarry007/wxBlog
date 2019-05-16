@@ -3,6 +3,7 @@
         <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
             <text class='icon-back'></text> 返回
         </navigator>
+        <view class='content' style='top:{{StatusBar}}px;'>我的喜欢</view>
     </view>
 </view>
 <view class="cu-timeline">

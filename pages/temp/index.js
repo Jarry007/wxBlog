@@ -13,6 +13,7 @@ Page({
         isnew: false
     },
     onLoad: function (options) {
+        
         wx.getSetting({
             success:res=> {
                 if (res.authSetting['scope.userInfo']) {
@@ -30,8 +31,9 @@ Page({
             }
         })
     },
-
+ 
     bindGetUserInfo(e) {
+        wx.vibrateShort({})
         const accountInfo = wx.getAccountInfoSync()
         console.log(accountInfo.miniProgram.appId)
         console.log(e.detail.userInfo)
@@ -77,12 +79,6 @@ Page({
             }
         })
     },
-    //事件处理函数
-    bindViewTap: function() {
-        wx.navigateTo({
-            url: '../logs/logs'
-        })
-    },
     onShow: function() {
         let stroage = wx.getStorageSync('final_data');
         if (stroage) {
@@ -119,5 +115,13 @@ Page({
             }
         })
     },
+    onPageScroll(e) {
+        if (e.scrollTop < 0) {
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration: 300
+            })
+        }
+    }
 
 })

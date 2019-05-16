@@ -13,6 +13,7 @@ Page({
         first_tap: ''
     },
     onLoad: function(options) {
+        wx.vibrateShort({})
         router.route_request('mp/new').catch(res => {
             let news = res.news;
             for (var i = 0; i < news.length; i++) {
@@ -25,6 +26,7 @@ Page({
 
     },
     onReady: function() {
+        
         let info = {
             page: this.data.page
         }
@@ -47,7 +49,9 @@ Page({
         })
     },
     onShow: function() {
-
+       
+           
+      
     },
     cardSwiper(e) {
         this.setData({
@@ -59,6 +63,7 @@ Page({
 
 
     onReachBottom: function() {
+        wx.vibrateShort({})
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
@@ -86,6 +91,7 @@ Page({
 
     },
     onPullDownRefresh() {
+        wx.vibrateShort({})
         wx.showNavigationBarLoading()
         console.log('到顶了')
         wx.showLoading({
@@ -96,11 +102,10 @@ Page({
         this.setData({
             page: 1
         })
-
+        wx.stopPullDownRefresh();
 
     },
     totop(e) {
-        console.log(e.timeStamp)
         let first = e.timeStamp
         if (first - this.data.first_tap < 300) {
             wx.pageScrollTo({

@@ -1,4 +1,5 @@
 const app = getApp()
+const accountInfo = wx.getAccountInfoSync()
 var router = require('../index/router.js');
 Page({
 
@@ -7,6 +8,7 @@ Page({
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
         ColorList: app.globalData.ColorList,
+        imgList:[]
     },
     onLoad: function (options) {
 
@@ -15,50 +17,72 @@ Page({
     onReady: function () {
 
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
     issue(e){
-        let iss = e.detail.value.issue;
-        console.log(iss)
+        wx.vibrateShort({})
+        let iss = e.detail.value.issue,
+        imgs = this.data.imgList;
+        if (iss){
+        wx.showToast({
+            title: '反馈成功',
+            icon:'success'
+        })
+        wx.uploadFile({
+            url: 'http://127.0.0.1:5000/mp/send_mail' ,
+            header:{
+                appid: String (accountInfo.miniProgram.appId),
+                iss:JSON.stringify(iss)
+            },
+            metohd: 'POST',
+            filePath: String(imgs[0]),
+            name: 'imgs',
+            forData:{
+               
+                iss:JSON.stringify(iss)
+                
+            },
+            success:res=>{
+                console.log(res)
+            }
+        })
+            
+        }else{
+            wx.showToast({
+                title: '不能为空',
+                icon:'none'
+            })
+        }
+
+    },
+    choose(e){
+        wx.vibrateShort({})
+       // let imgCount = 3-this.data.imgList.length
+        wx.chooseImage({
+            count: 1,
+            sizeType: ['original', 'compressed'], 
+            sourceType: ['album'],
+            success: res=> {
+                if (this.data.imgList.length != 0) {
+                    this.setData({
+                        imgList: this.data.imgList.concat(res.tempFilePaths)
+                    })
+                } else {
+                    this.setData({
+                        imgList: res.tempFilePaths
+                    })
+                }
+            }
+        })
+    },
+    ViewImage(e) {
+        wx.previewImage({
+            urls: this.data.imgList,
+            current: e.currentTarget.dataset.url
+        });
+    },
+    closeimg(e){
+        this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+        this.setData({
+            imgList: this.data.imgList
+        })
     }
 })

@@ -1,15 +1,33 @@
- <view class="cu-custom" style="height:{{CustomBar}}px;">
-  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-      <text class='icon-back'></text> 返回
-    </navigator>
-  </view>
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text> 返回
+        </navigator>
+        <view class='content' style='top:{{StatusBar}}px;'>反 馈</view>
+    </view>
 </view>
-  <form bindsubmit='issue'>
- <view class="cu-form-group top" >
-    <view class='title'>反馈内容</view>
-    <textarea placeholder="多行文本输入框" maxlength="-1" placeholder-class='placeholder' name="issue"></textarea>
-    <button class='cu-btn round bg-red shadow' form-type='submit'>发表</button>
-  </view>
-  
-  </form>
+<form bindsubmit='issue'>
+
+    <view class="margin-xl padding-lg bg-white radius shadow-lg">
+
+        <view>
+            <textarea placeholder="在此输入反馈" maxlength="-1" placeholder-class='placeholder' name="issue"></textarea>
+        </view>
+
+<view class="cu-form-group">
+		<view class="grid col-3 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-black" catchtap="closeimg" data-index="{{index}}">
+					<text class="icon-close text-gray "></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="choose" wx:if="{{imgList.length<1}}">
+				<text class="icon-camerafill"></text>
+			</view>
+		</view>
+	</view>
+        <button class='cu-btn bg-black lg margin-top-xl flex flex-direction' form-type='submit'>反馈</button>
+    </view>
+
+</form>

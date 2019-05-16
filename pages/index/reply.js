@@ -23,6 +23,7 @@ Page({
 
     },
     reply(e){
+        wx.vibrateShort({})
         if (e.detail.value.reply) {
             let stroage = wx.getStorageSync('final_data')
             if (stroage) {

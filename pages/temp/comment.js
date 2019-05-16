@@ -75,6 +75,7 @@ Page({
         })
     },
     onReachBottom: function () {
+        wx.vibrateShort({})
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
@@ -87,7 +88,6 @@ Page({
                 openId: stroage.openId,
                 page: page
             }
-        console.log('page' + page)
         router.route_request('mp/my_say', info).catch(res => {
             let data_ = res.all;
             for (var i = 0; i < data_.length; i++) {
@@ -139,10 +139,19 @@ Page({
 
     },
     todetail(e) {
+        wx.vibrateShort({})
         let id = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '../index/more?id=' + id,
         })
+    },
+    onPageScroll(e) {
+        if (e.scrollTop < 0) {
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration:300
+            })
+        }
     }
 
 })

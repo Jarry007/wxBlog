@@ -18,6 +18,7 @@ Page({
 
     },
     tabselect(e){
+        wx.vibrateShort({})
         let id = e.currentTarget.dataset.id;
         if (id==0){
             var route = 'mp/notice'
@@ -104,5 +105,13 @@ Page({
         }
         this.pagenation(route,info)
         
+    },
+    onPageScroll: function (e) {
+        if (e.scrollTop < 0) {
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration:300
+            })
+        }
     }
 })

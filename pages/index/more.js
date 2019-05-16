@@ -50,6 +50,9 @@ Page({
     },
     like(e) {
         //  like_.like()
+        wx.vibrateShort({
+
+        })
         let stroage = wx.getStorageSync('final_data');
         if (stroage) {
             let like_count = this.data.like_count,
@@ -95,6 +98,9 @@ Page({
 
     },
     comment(e) {
+        wx.vibrateShort({
+
+        })
         if(e.detail.value.comment){
         let stroage = wx.getStorageSync('final_data')
         console.log(stroage)
@@ -181,6 +187,9 @@ Page({
 
     },
     onPullDownRefresh() {
+        wx.vibrateShort({
+            
+        })
         wx.showNavigationBarLoading()
         wx.showLoading({
             title: '更新中...',
@@ -195,8 +204,12 @@ Page({
             posts['time'] = time_.formatTime(new Date(posts['time'].replace('GMT', '')))
             this.get_data(posts)
         })
+        wx.stopPullDownRefresh();
     },
     zan: function(e) {
+        wx.vibrateShort({
+
+        })
         let stroage = wx.getStorageSync('final_data'),
             num = e.currentTarget.dataset.id;
         var index = e.currentTarget.dataset.index;
@@ -253,7 +266,7 @@ Page({
         }
         return {
             title: this.data.post.tittle,
-            path: '/pages/more?id=' + this.data.post.id,
+            path: '/pages/index/more?id=' + this.data.post.id,
             success: res => {
                 console.log('成功')
             },
@@ -264,6 +277,9 @@ Page({
 
     },
     collection(e){
+        wx.vibrateShort({
+
+        })
         let colloced = this.data.iscollec;
         let post = [this.data.post],
             collec = wx.getStorageSync('collection');

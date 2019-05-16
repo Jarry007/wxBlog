@@ -19,10 +19,19 @@ Page({
 
     },
     todetail(e){
+        wx.vibrateShort({})
         let id = e.currentTarget.dataset.id;
         wx.navigateTo({
             url: '../index/more?id=' + id,
         })
+    },
+    onPageScroll(e) {
+        if (e.scrollTop < 0){
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration:300
+            })
+        }
     }
   
 })
