@@ -26,6 +26,7 @@ Page({
             title: '反馈成功',
             icon:'success'
         })
+        if(this.data.imgList.length>0){
         wx.uploadFile({
             url: 'http://127.0.0.1:5000/mp/send_mail' ,
             header:{
@@ -43,7 +44,19 @@ Page({
             success:res=>{
                 console.log(res)
             }
-        })
+        })}else{
+            wx.request({
+                url: 'http://127.0.0.1:5000/mp/send_mail',
+                header: {
+                    appid: String(accountInfo.miniProgram.appId),
+                    iss: JSON.stringify(iss)
+                },
+                metohd: 'POST',
+                success:res=>{
+                    console.log(res)
+                }
+            })
+        }
             
         }else{
             wx.showToast({
