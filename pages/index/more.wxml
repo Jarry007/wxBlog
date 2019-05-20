@@ -38,7 +38,7 @@
  
 </view>
         <view class="cu-list menu menu-avatar comment solids-top">
-            <view class="cu-item" wx:for="{{comments}}" wx:key='{{item}}' >
+            <view class="cu-item" wx:for="{{comments}}" wx:key='{{item}}'catchtap='reply' data-id='{{item.id}}' data-index='{{index}}' >
             
                 <view  class="cu-avatar round" style="background-image:url({{item._link.avatar}});"></view>
                 <view class='content'>
@@ -61,7 +61,7 @@
                             <text wx:if='{{item.likes>0}}'>{{item.likes}}</text>
                             </text>
                             <text class="icon-messagefill text-gray margin-left-sm" 
-                            catchtap='reply' data-id='{{item.id}}' data-index='{{index}}'></text>
+                            ></text>
                         </view>
                     </view>
                 </view>

@@ -73,13 +73,5 @@ Page({
                 wx.login() // 重新登录
             }
         })
-    },
-    onPageScroll(e) {
-        if (e.scrollTop < 0) {
-            wx.pageScrollTo({
-                scrollTop: 0,
-                duration: 300
-            })
-        }
     }
 })

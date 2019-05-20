@@ -28,43 +28,40 @@ Page({
         })
         if(this.data.imgList.length>0){
         wx.uploadFile({
-            url: 'http://127.0.0.1:5000/mp/send_mail' ,
+            url: 'https://blogai.cn/mp/send_mail' ,
             header:{
-                appid: String (accountInfo.miniProgram.appId),
-                iss:JSON.stringify(iss)
+                appid: String(accountInfo.miniProgram.appId)
             },
             metohd: 'POST',
             filePath: String(imgs[0]),
             name: 'imgs',
-            forData:{
-               
+            formData:{
                 iss:JSON.stringify(iss)
-                
             },
             success:res=>{
                 console.log(res)
             }
         })}else{
             wx.request({
-                url: 'http://127.0.0.1:5000/mp/send_mail',
+                url: 'https://blogai.cn/mp/send_mail',
                 header: {
-                    appid: String(accountInfo.miniProgram.appId),
-                    iss: JSON.stringify(iss)
+                    appid: String(accountInfo.miniProgram.appId)
                 },
                 metohd: 'POST',
+                data:{
+                    iss: JSON.stringify(iss)
+                },
                 success:res=>{
                     console.log(res)
                 }
             })
         }
-            
         }else{
             wx.showToast({
                 title: '不能为空',
                 icon:'none'
             })
         }
-
     },
     choose(e){
         wx.vibrateShort({})
@@ -93,9 +90,9 @@ Page({
         });
     },
     closeimg(e){
-        this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+        
         this.setData({
-            imgList: this.data.imgList
+            imgList: []
         })
     }
 })

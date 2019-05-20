@@ -99,8 +99,18 @@ Page({
             icon: 'loading',
             duration: 1500
         })
-        this.setData({
-            page: 1
+        let info ={
+            page:1
+        }
+        router.route_request('mp/posts', info).catch(res => {
+            let news = res.posts
+            for (var i = 0; i < news.length; i++) {
+                news[i]['time'] = time.formatTime(new Date(news[i]['time'].replace('GMT', '')))
+            }
+            this.setData({
+                posts: news,
+                page:1
+            })
         })
         wx.stopPullDownRefresh();
 

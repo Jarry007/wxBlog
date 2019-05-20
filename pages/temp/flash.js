@@ -88,6 +88,7 @@ Page({
     })
 },
     onReachBottom: function() {
+        wx.vibrateShort({})
         wx.showLoading({
             title: '数据加载中...',
             icon: 'loading',
@@ -105,13 +106,5 @@ Page({
         }
         this.pagenation(route,info)
         
-    },
-    onPageScroll: function (e) {
-        if (e.scrollTop < 0) {
-            wx.pageScrollTo({
-                scrollTop: 0,
-                duration:300
-            })
-        }
     }
 })

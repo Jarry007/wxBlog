@@ -18,7 +18,7 @@
         <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow " bindtap='more' data-id='{{item.id}}'>
             <view class='image'>
                 <image src="https://blogai.cn/static/{{item.img}}" mode="widthFix"></image>
-                <view class="cu-tag bg-blue">原创</view>
+              
                 <view class='cu-bar bg-shadeBottom'>
                     <text class="text-cut">{{item.tittle}}</text>
                 </view>

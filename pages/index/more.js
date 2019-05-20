@@ -30,6 +30,7 @@ Page({
         router.route_request('mp/refresh', info).catch(res => {
 
             let posts = res;
+            console.log(posts)
             posts['time']= time_.formatTime(new Date(posts['time'].replace('GMT', '')))
             this.get_data(posts)
             let collec = wx.getStorageSync('collection');
@@ -151,7 +152,7 @@ Page({
             comments = posts.new_comment.comments,
             like = posts.likes,
             stroage = wx.getStorageSync('final_data');
-            console.log(stroage)
+            
         if (stroage) {
             var wx_uid = md_.md5(stroage['openId']);
         
@@ -187,9 +188,7 @@ Page({
 
     },
     onPullDownRefresh() {
-        wx.vibrateShort({
-            
-        })
+        wx.vibrateShort({})
         wx.showNavigationBarLoading()
         wx.showLoading({
             title: '更新中...',
@@ -207,9 +206,7 @@ Page({
         wx.stopPullDownRefresh();
     },
     zan: function(e) {
-        wx.vibrateShort({
-
-        })
+        wx.vibrateShort({})
         let stroage = wx.getStorageSync('final_data'),
             num = e.currentTarget.dataset.id;
         var index = e.currentTarget.dataset.index;
