@@ -125,14 +125,16 @@ Page({
                     }
                 }
                 this.setData({
-                    comments: comments
+                    comments: comments,
+                    comment_count:this.data.comment_count+1
                 })
             })
             wx.showToast({
                 title: '评论成功',
                 duration: 1500
             })
-            this.tobottom()
+            setTimeout(()=>{this.tobottom()},1500)
+            
 
 
         } else {

@@ -87,7 +87,7 @@ Page({
             }
             router.route_request('mp/all_notice', info).catch(res => {
                 wx.setStorageSync('notice', res)
-                console.log()
+                console.log(res)
                 if (res.like[0]['new'] || res.reply[0]['new']) {
                     console.log('new')
                     this.setData({
