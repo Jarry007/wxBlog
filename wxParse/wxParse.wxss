@@ -109,7 +109,9 @@ view{
 .wxParse-code,.wxParse-wxxxcode-style{
     display: inline;
     font-size: 80%;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "STHeitiTC-Light", "Microsoft YaHei Light", -apple-system, system-ui, BlinkMacSystemFont
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "STHeitiTC-Light", "Microsoft YaHei Light", -apple-system, system-ui, BlinkMacSystemFont;
+    color: rgb(94, 73, 189);
+     
 }
 .wxParse-ol{
     list-style-type: decimal;
