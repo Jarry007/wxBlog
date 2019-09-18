@@ -1757,6 +1757,10 @@ button.icon.lg {
 
 .cu-custom .cu-bar .content {
   width: calc(100% - 440rpx);
+  text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+
 }
 
 .cu-custom .cu-bar {

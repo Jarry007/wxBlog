@@ -1,10 +1,6 @@
-<view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-            <text class='icon-back'></text> 返回
-        </navigator>
-    </view>
-</view>
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}"><view slot="backText">返回</view><view slot="content"></view></cu-custom>
+
+
 
 <view class="cu-card dynamic">
     <view class="cu-list menu menu-avatar">

@@ -54,12 +54,14 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
+   border-radius: 10rpx;
 }
 
 :not(pre) > code[class*="language-"],
 .wxParse-pre {
 	background: #f7f7f7;
   border: 1rpx solid rgb(209, 208, 208);
+  border-radius: 10rpx;
 }
 /* Inline code */
 :not(pre) > code[class*="language-"] {

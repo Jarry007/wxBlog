@@ -29,3 +29,28 @@
   line-height: 100rpx;
   font-size: 20rpx;
 }
+
+.poster-btn{
+   width: 80rpx;
+   height: 80rpx;
+   border-radius: 50%;
+   box-shadow: 2rpx 2rpx 20rpx rgba(123, 154, 211, 0.808);
+   background: cornflowerblue;
+   position: fixed;
+   bottom: 130rpx;
+   right: 0;
+   line-height: 80rpx;
+   text-align: center;
+   color: #fff;
+
+   
+}
+.poster{
+   margin: 0 auto;
+   transition: all .3s ease-in;
+}
+
+.hidden{
+   transform: translateY(200%);
+   
+}

@@ -1,11 +1,7 @@
-<view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-            <text class='icon-back'></text> 返回
-        </navigator>
-        <view class='content' style='top:{{StatusBar}}px;'>反 馈</view>
-    </view>
-</view>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">反馈</view></cu-custom>
+
+
+
 <form bindsubmit='issue'>
 
     <view class="margin-xl padding-lg bg-white radius shadow-lg">

@@ -12,7 +12,8 @@
     "pages/about/about",
     "pages/about/thank",
     "pages/index/reply",
-    "pages/about/issue"
+    "pages/about/issue",
+    "component/custom"
 
   ],
   "window": {
@@ -43,5 +44,8 @@
         }
     ]
 }, 
+"usingComponents": {
+   "cu-custom": "/component/custom"
+},
   "sitemapLocation": "sitemap.json"
 }

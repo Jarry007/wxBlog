@@ -1,8 +1,4 @@
-<view class='cu-custom' style="height:{{CustomBar}}px;" bindtap='totop'>
-    <view class="cu-bar fixed bg-gradual-purple" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <view class='content' style='top:{{StatusBar}}px;'>主页</view>
-    </view>
-</view>
+<cu-custom bgColor="bg-gradual-purple" ><view slot="content"> 主页</view></cu-custom>
     <swiper class="card-swiper round-dot {{news? '':'page'}} " indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
         <swiper-item wx:for="{{news}}" wx:key wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
             <view class="bg-img shadow-blur " style="background-image:url(https://blogai.cn/static/{{new_.img}})" bindtap='more' data-id='{{new_.id}}'>

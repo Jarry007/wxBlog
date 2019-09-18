@@ -1,8 +1,8 @@
-<view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-purple" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <view class='content' style='top:{{StatusBar}}px;'>我的</view>
-    </view>
-</view>
+
+<cu-custom bgColor="bg-gradual-purple" ><view slot="content"> 我的</view></cu-custom>
+
+
+
 <view class="margin-xl padding-lg bg-white radius shadow-lg">
     <view class="flex justify-center">
         <button wx:if="{{!hasUserInfo && canIUse}}" 
@@ -80,6 +80,12 @@
             <text class="icon-writefill text-pink"></text>
             <text class="text-grey">特别感谢</text>
         </navigator>
+    </view>
+     <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact">
+        <text class="icon-servicefill text-cyan"></text>
+        <text class="text-grey">客服功能</text>
+      </button>
     </view>
 </view>
 

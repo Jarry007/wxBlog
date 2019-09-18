@@ -37,17 +37,38 @@ view{
 .wxParse-h1 {
   font-size: 18px;
   font-weight: 400;
-  margin-bottom: .9em;
+  border-bottom: 2rpx solid  rgb(79, 81, 228);
+
+}
+.wxParse-h1 .wxParse-inline{
+  padding: 6rpx 11rpx 4rpx;
+  color: #fff;
+  background:  rgb(79, 81, 228);
+  border-top-left-radius: 5rpx;
+  border-top-right-radius: 12rpx;
 }
 .wxParse-h2 {
+   
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: .34em;
+  margin-bottom: .5em;
+  border-bottom: 2rpx solid  rgb(82, 199, 121);
+}
+.wxParse-h2 .wxParse-inline{
+  padding: 8rpx 6rpx 0  6rpx;
+  color: #fff;
+  background:  rgb(82, 199, 121);
+  border-top-left-radius: 5rpx;
+  border-top-right-radius: 12rpx;
 }
 .wxParse-h3 {
   font-weight: 400;
   font-size: 15px;
-  margin-bottom: .34em;
+  margin-bottom: .5em;
+  
+}
+.wxParse-h3 .wxParse-inline{
+  border-bottom: 2rpx solid  rgb(221, 176, 80);
 }
 .wxParse-h4 {
   font-weight: 400;
@@ -110,7 +131,7 @@ view{
     display: inline;
     font-size: 80%;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, "STHeitiTC-Light", "Microsoft YaHei Light", -apple-system, system-ui, BlinkMacSystemFont;
-    color: rgb(94, 73, 189);
+    color: rgb(249, 63, 127);
      
 }
 .wxParse-ol{
@@ -121,7 +142,8 @@ view{
     margin: 20rpx 10rpx;
 }
 .wxParse-hr{
-    background-color: #eee;
+    background-color: rgb(129, 139, 224);
+  
     height: 8rpx;
     margin: 40rpx 0;
 
@@ -140,7 +162,7 @@ view{
     display: inline-flex;
     width: 10rpx;
     height: 10rpx;
-    background-color: #333;
+    background-color: rgb(129, 139, 224);
     margin-right: 5px;
 }
 .wxParse-li-ring{

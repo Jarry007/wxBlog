@@ -1,4 +1,5 @@
 {
+	"cloudfunctionRoot": "cloudfunctions/",
 	"description": "项目配置文件",
 	"packOptions": {
 		"ignore": []
@@ -12,7 +13,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.8.1",
 	"appid": "wx41756aa8716ef1b9",
 	"projectname": "007",
 	"debugOptions": {

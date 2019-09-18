@@ -1,13 +1,9 @@
 
 <import src="../../wxParse/wxParse.wxml"/>
-<view class="cu-custom" style="height:{{CustomBar}}px;">
-    <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
-        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
-            <text class='icon-back'></text> 返回
-        </navigator>
-        <view class='content' style='top:{{StatusBar}}px;'>{{post.tittle}}</view>
-    </view>
-</view>
+
+
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}"><view slot="backText">返回</view><view slot="content"> {{post.tittle}}</view></cu-custom>
+
 <view class="cu-card dynamic">
         <view class="cu-list menu menu-avatar">
             <view class="cu-item">
@@ -84,3 +80,23 @@
   </view>
 </view>
 </form>
+
+
+<view class="poster-btn" bindtap="share">分享</view>
+<view>
+<image src="{{imgeInfo.path}}"/>
+
+</view>
+
+<view class="cu-modal {{show?'show':''}}">
+  <view class="cu-dialog" style="width:{{cWidth}}px">
+  
+      <canvas canvas-id="poster" class="{{show?'poster':'hidden'}}" style="width:{{cWidth}}px;height:{{cHeight}}px"></canvas>
+
+    <view class="cu-bar bg-white">
+     <view class="action  flex-sub text-green " bindtap="exportImg">
+       保存图片</view>
+      <view class="action flex-sub text-green solid-left" bindtap="hideModal">取消操作</view>
+    </view>
+  </view>
+</view>
