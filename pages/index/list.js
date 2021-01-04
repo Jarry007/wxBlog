@@ -1,5 +1,8 @@
 // pages/index/list.js
 const app = getApp()
+const {
+    Router
+} = require('../../utils/router.js');
 var time = require('../../utils/util.js')
 var router = require('../index/router.js');
 Page({
@@ -10,48 +13,92 @@ Page({
         page: 1,
         StatusBar: app.globalData.StatusBar,
         CustomBar: app.globalData.CustomBar,
-        first_tap: ''
+        first_tap: '',
+        pageNum:1,
+        canScroll:true,
+        list:[],
+        hiddenLoading:false
     },
-    onLoad: function(options) {
+    onLoad: function (options) {
         wx.vibrateShort({})
-        router.route_request('mp/new').catch(res => {
-            let news = res.news;
-            for (var i = 0; i < news.length; i++) {
-                news[i]['time'] = time.formatTime(new Date(news[i]['time'].replace('GMT', '')))
-            }
-            this.setData({
-                news: news
-            })
-        })
+        this.getNew()
+        this.getList()
+        // router.route_request('mp/new').catch(res => {
+        //     let news = res.news;
+        //     for (var i = 0; i < news.length; i++) {
+        //         news[i]['time'] = time.formatTime(new Date(news[i]['time'].replace('GMT', '')))
+        //     }
+        //     this.setData({
+        //         news: news
+        //     })
+        // })
 
     },
-    onReady: function() {
-        
-        let info = {
-            page: this.data.page
+    getNew() {
+        Router.get('mp/new').then(res => {
+            this.setData({
+                news: res.data
+            })
+        })
+    },
+    getList(e) {
+        if (e === 'refresh') {
+            this.data.pageNum = 1
+        } else {
+            if (!this.data.canScroll) return
         }
-        router.route_request('mp/posts', info).catch(res => {
-          
-            let post_ = res.posts
-            for (var i = 0; i < post_.length; i++) {
-                post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
-            }
+        const parmas = {
+            pageNum: this.data.pageNum
+        }
+        Router.get('get-list', parmas).then(res => {
+            console.log('列表', res)
+              if(e==='refresh'){
+                  this.setData({
+                    list: res.data,
+                    status: false,
+                    hiddenLoading:true
+                  })
+              }else{
+                this.data.list = this.data.list.concat(res.data)
+                this.setData({
+                  list: this.data.list,
+                  hiddenLoading:true
+                })
+              }
+            this.data.pageNum++
+
             this.setData({
-                posts: post_
+                canScroll: res.data.length === 10
             })
         })
-
     },
-    more: function(event) {
+    // onReady: function () {
+
+    //     let info = {
+    //         page: this.data.page
+    //     }
+    //     router.route_request('mp/posts', info).catch(res => {
+
+    //         let post_ = res.posts
+    //         for (var i = 0; i < post_.length; i++) {
+    //             post_[i]['time'] = time.formatTime(new Date(post_[i]['time'].replace('GMT', '')))
+    //         }
+    //         this.setData({
+    //             posts: post_
+    //         })
+    //     })
+
+    // },
+    more: function (event) {
         let postId = event.currentTarget.dataset.id
         wx.navigateTo({
             url: 'more?id=' + postId,
         })
     },
-    onShow: function() {
-       
-           
-      
+    onShow: function () {
+
+
+
     },
     cardSwiper(e) {
         this.setData({
@@ -62,7 +109,7 @@ Page({
 
 
 
-    onReachBottom: function() {
+    onReachBottom: function () {
         wx.vibrateShort({})
         wx.showLoading({
             title: '数据加载中...',
@@ -99,8 +146,8 @@ Page({
             icon: 'loading',
             duration: 1500
         })
-        let info ={
-            page:1
+        let info = {
+            page: 1
         }
         router.route_request('mp/posts', info).catch(res => {
             let news = res.posts
@@ -109,7 +156,7 @@ Page({
             }
             this.setData({
                 posts: news,
-                page:1
+                page: 1
             })
         })
         wx.stopPullDownRefresh();

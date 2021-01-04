@@ -14,4 +14,9 @@
     background-position: 50% 50%; 
     height: 50vh;
 }
+
+.bg-black{
+    background: rgba(17, 17, 17, 0.3);
+    border-radius: 10rpx;
+}
  

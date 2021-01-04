@@ -1,6 +1,6 @@
 const app = getApp()
 const accountInfo = wx.getAccountInfoSync()
-console.log(accountInfo.miniProgram.appId) 
+
 
 function route_request(route, info) {
     return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ function route_request(route, info) {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             success(request) {
-                if (request.data.code === 200) {
+                if (parseInt(request.data.code) === 200) {
                     resolve(request.data)
                 } else {
                     reject(request.data)

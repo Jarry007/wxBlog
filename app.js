@@ -13,11 +13,16 @@ App({
     },
     globalData: {
         userInfo: null,
-        url: 'http://127.0.0.1:5000/',
+        url: 'http://localhost:5000/',
         new_: '',
         StatusBar: '',
         Custom: '',
-        CustomBar: ''
+        CustomBar: '',
+        routerConfig:{
+            tokenName:'Authorization',
+            tokenValue:'',
+            url:'http://localhost:5000/'
+          }
 
     }
 })

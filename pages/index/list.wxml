@@ -1,17 +1,20 @@
 <cu-custom bgColor="bg-gradual-purple" ><view slot="content"> 主页</view></cu-custom>
     <swiper class="card-swiper round-dot {{news? '':'page'}} " indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-        <swiper-item wx:for="{{news}}" wx:key wx:for-item='new_' class="{{cardCur==index?'cur':''}}">
+        <swiper-item class="{{cardCur==index?'cur':''}}">
+            <ad unit-id="adunit-5a01df70f5dee209"></ad>
+        </swiper-item>
+        <swiper-item wx:for="{{news}}" wx:key='swiper' wx:for-item='new_' class="{{cardCur==index+1?'cur':''}}">
             <view class="bg-img shadow-blur " style="background-image:url(https://blogai.cn/static/{{new_.img}})" bindtap='more' data-id='{{new_.id}}'>
                 <view class='padding-xl text-white'>
-                    <view class='padding-xs text-cut text-xl'>
+                    <view class='padding-xs text-cut text-xl bg-black'>
                         {{new_.tittle}}
                     </view>
                 </view>
             </view>
         </swiper-item>
     </swiper>
-    <view class="cu-card case {{posts? '':'loading'}}">
-        <view wx:for="{{posts}}" wx:key='{{item}}' wx:for-item='item' class="cu-post shadow " bindtap='more' data-id='{{item.id}}'>
+    <view class="cu-card case {{hiddenLoading? '':'loading'}}">
+        <view wx:for="{{list}}" wx:key='list' wx:for-item='item' class="cu-post shadow " bindtap='more' data-id='{{item.id}}'>
             <view class='image'>
                 <image src="https://blogai.cn/static/{{item.img}}" mode="widthFix"></image>
               
@@ -22,11 +25,12 @@
             <view class="cu-list menu menu-avatar">
                 <view class="cu-item">
                     <view class="cu-avatar round lg" style="background-image:url(https://www.gravatar.com/avatar/dff99b35a2b0d44e97f7aad39408f842?s=180&d=monsterid&r=g);">
-                    <image class='cu-avatar round lg' src='{{item.link_.avatar}}'></image></view>
+                    <image class='cu-avatar round lg' src='{{item.link_.avatar}}'></image>
+                </view>
                     <view class='content flex-sub'>
                         <view class='text-grey'>{{item.link_.username}}</view>
                         <view class='text-gray text-sm flex justify-between'>
-                            {{item.time }}
+                            {{item.time}}
                             <view class="text-gray text-sm">
                                 <text class="icon-attentionfill"></text> {{item.view_count}}
                                 <text class="icon-appreciatefill"></text> {{item.like_count}}
